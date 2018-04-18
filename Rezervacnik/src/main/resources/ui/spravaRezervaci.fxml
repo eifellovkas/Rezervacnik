@@ -45,27 +45,9 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="133.0" prefWidth="595.0">
                <children>
-                  <VBox alignment="CENTER" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefWidth="300.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="100.0" text="Měsíc" />
-                        <TextArea prefHeight="50.0" prefWidth="200.0" />
-                     </children>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <VBox alignment="CENTER" prefWidth="100.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Rok" />
-                        <TextArea prefHeight="50.0" prefWidth="200.0" />
-                     </children>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <VBox alignment="CENTER" prefWidth="100.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Den" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="400.0" text="Datum" />
                         <TextArea prefHeight="50.0" prefWidth="200.0" />
                      </children>
                      <HBox.margin>
@@ -127,7 +109,7 @@
                <children>
                   <VBox alignment="CENTER" prefWidth="100.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="100.0" text="Měsíc" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Rok" />
                         <ComboBox prefWidth="100.0" />
                      </children>
                      <HBox.margin>
@@ -139,7 +121,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                      <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Rok" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Mesic" />
                         <ComboBox prefWidth="100.0" />
                      </children>
                   </VBox>
@@ -148,6 +130,15 @@
                         <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Den" />
                         <ComboBox prefWidth="150.0" />
                      </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Hodina" />
+                        <ComboBox prefWidth="100.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
                   </VBox>
                   <VBox alignment="CENTER" prefWidth="100.0">
                      <children>
@@ -170,7 +161,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER" prefWidth="200.0">
+                  <VBox alignment="CENTER" prefWidth="150.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="21.0" prefWidth="150.0" text="Stůl" />
                         <ComboBox prefHeight="31.0" prefWidth="150.0" />
