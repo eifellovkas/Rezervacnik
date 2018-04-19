@@ -12,6 +12,8 @@ Aneta Bukovjanová – třída Rezervace<br />
 Martin Havlík – třída Restaurace<br />
 Václav Pleskač – třída Stůl<br />
 
+![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/class.png)
+
 Návrhy:<br />
 
 Aneta Bukovjanová – okna týkající se rezervace (správa rezervace, nová rezervace)<br />
