@@ -28,6 +28,7 @@ Václav Pleskač – okna týkající se rezervace (správa rezervace, nová rez
 ![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/use.png)
 
 Use case slovní popis včetně scénářů<br />
+<br />
 
 Spustit aplikaci<br />
 
@@ -50,7 +51,6 @@ Exception Sequence<br />
 3.	Uživatel restartuje aplikaci<br /> 
 4.	Uživateli se zobrazí GUI aplikace<br /> 
 <br />
-
 
 Ukončit aplikaci<br />
 
@@ -75,6 +75,7 @@ Exception Sequence<br />
 5.	Aplikace se ukončí<br />
 <br />
 Sub UseCase	Uložit záznam<br />
+<br />
 
 Uložit záznam<br />
 
@@ -99,6 +100,7 @@ Exception Sequence<br />
 4.	Záznam je uložen v databázi<br />
 <br />
 Sub UseCase<br />	
+<br />
 
 Udržovat údaje o stolu<br />
 
@@ -134,6 +136,7 @@ Exception Sequence<br />
 9.	Systém upraví pramatery stolu v seznamu stolů<br />
 <br />
 Sub UseCase	Nalézt stůl<br />
+<br />
 
 Nalézt stůl<br />
 
@@ -160,6 +163,7 @@ Exception Sequence<br />
 5.	Systém předá záznam uživateli<br />
 <br />
 Sub UseCase<br />
+<br />
 
 Udržovat údaje o rezervaci<br />
 
@@ -196,6 +200,7 @@ Exception Sequence<br />
 9.	Systém upraví rezervaci a záznam o jejím výskytu<br />
 <br />
 Sub UseCase	Nalézt stůl<br />
+<br />
  
 Struktura souborů nebo struktura databáze:<br />
 podoba CSV dokumentu<br />
