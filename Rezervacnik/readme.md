@@ -1,42 +1,42 @@
 REZERVAČNÍK
-Aneta Bukovjanová, Martin Havlík, Václav Pleskač 
+Aneta Bukovjanová, Martin Havlík, Václav Pleskač<br /> 
 
-Zadání: Rezervace míst v restauraci (2-3 řešitelé) 
-Aplikace na podporu rezervací míst v restauraci. Aplikace eviduje stoly s počtem míst, umístění nekuřácký/kuřácký. Zákazníci si objednávají rezervaci na den a hodinu. 
+Zadání: Rezervace míst v restauraci (2-3 řešitelé)<br /> 
+Aplikace na podporu rezervací míst v restauraci. Aplikace eviduje stoly s počtem míst, umístění nekuřácký/kuřácký. Zákazníci si objednávají rezervaci na den a hodinu.<br /> 
 
-Seznam úkolů: 
+Seznam úkolů:<br />  
 
-Třídy: 
+Třídy:<br />  
 
-Aneta Bukovjanová – třída Rezervace 
-Martin Havlík – třída Restaurace 
-Václav Pleskač – třída Stůl 
+Aneta Bukovjanová – třída Rezervace<br />  
+Martin Havlík – třída Restaurace<br />  
+Václav Pleskač – třída Stůl<br />  
 
-Návrhy: 
+Návrhy:<br /> 
 
-Aneta Bukovjanová – okna týkající se rezervace (správa rezervace, nová rezervace) 
-Martin Havlík – realizování ukládaní souborů (čtení souborů), spuštění GUI, úvodní menu 
-Václav Pleskač – okna týkající se stolů (správa stolů, nový stůl) 
+Aneta Bukovjanová – okna týkající se rezervace (správa rezervace, nová rezervace)<br />  
+Martin Havlík – realizování ukládaní souborů (čtení souborů), spuštění GUI, úvodní menu<br />  
+Václav Pleskač – okna týkající se stolů (správa stolů, nový stůl)<br />  
 
 
-Use case slovní popis včetně scénářů 
+Use case slovní popis včetně scénářů<br />  
 
-Spustit aplikaci 	
+Spustit aplikaci<br />  	
 
-UseCase	Spustit aplikaci 
-Summary	Uživatel spustí aplikaci 
-Actor	Uzivatel 
+UseCase	Spustit aplikaci<br />  
+Summary	Uživatel spustí aplikaci<br />  
+Actor	Uzivatel<br />  
 	
-Precondition 	
-					Uživatel má přístup k aplikaci a má funkční rozhraní. 
-Postcondition	
-					Aplikace se správně spustila a otevřelo se okno úvodního menu. 
-Base Sequence 	
-					1.	Uživatel spustí aplikaci 
-					2.	Uživateli se zobrazí GUI aplikace 
-Branch Sequence	 
-Exception Sequence	 
-					1.	Uživatel spustí aplikaci 
+Precondition<br />  	
+					Uživatel má přístup k aplikaci a má funkční rozhraní.<br />  
+Postcondition<br /> 	
+					Aplikace se správně spustila a otevřelo se okno úvodního menu.<br />  
+Base Sequence<br />  	
+					1.	Uživatel spustí aplikaci<br />  
+					2.	Uživateli se zobrazí GUI aplikace<br />  
+Branch Sequence<br /> 	 
+Exception Sequence<br /> 	 
+					1.	Uživatel spustí aplikaci<br />  
 					2.	Aplikace se spustí s chybou 
 					3.	Uživatel restartuje aplikaci 
 					4.	Uživateli se zobrazí GUI aplikace 
