@@ -1,194 +1,189 @@
 REZERVAČNÍK
-Aneta Bukovjanová, Martin Havlík, Václav Pleskač<br /> 
+Aneta Bukovjanová, Martin Havlík, Václav Pleskač<br />
 
-Zadání: Rezervace míst v restauraci (2-3 řešitelé)<br /> 
-Aplikace na podporu rezervací míst v restauraci. Aplikace eviduje stoly s počtem míst, umístění nekuřácký/kuřácký. Zákazníci si objednávají rezervaci na den a hodinu.<br /> 
+Zadání: Rezervace míst v restauraci (2-3 řešitelé)<br />
+Aplikace na podporu rezervací míst v restauraci. Aplikace eviduje stoly s počtem míst, umístění nekuřácký/kuřácký. Zákazníci si objednávají rezervaci na den a hodinu.<br />
 
-Seznam úkolů:<br />  
+Seznam úkolů:<br />
 
-Třídy:<br />  
+Třídy:<br />
 
-Aneta Bukovjanová – třída Rezervace<br />  
-Martin Havlík – třída Restaurace<br />  
-Václav Pleskač – třída Stůl<br />  
+Aneta Bukovjanová – třída Rezervace<br />
+Martin Havlík – třída Restaurace<br />
+Václav Pleskač – třída Stůl<br />
 
-Návrhy:<br /> 
+Návrhy:<br />
 
-Aneta Bukovjanová – okna týkající se rezervace (správa rezervace, nová rezervace)<br />  
-Martin Havlík – realizování ukládaní souborů (čtení souborů), spuštění GUI, úvodní menu<br />  
-Václav Pleskač – okna týkající se stolů (správa stolů, nový stůl)<br />  
+Aneta Bukovjanová – okna týkající se rezervace (správa rezervace, nová rezervace)<br />
+Martin Havlík – realizování ukládaní souborů (čtení souborů), spuštění GUI, úvodní menu<br />
+Václav Pleskač – okna týkající se stolů (správa stolů, nový stůl)<br />
 
 
-Use case slovní popis včetně scénářů<br />  
+Use case slovní popis včetně scénářů<br />
 
-Spustit aplikaci<br />  	
+Spustit aplikaci<br />
 
-UseCase	Spustit aplikaci<br />  
-Summary	Uživatel spustí aplikaci<br />  
+UseCase	Spustit aplikaci<br />
+Summary	Uživatel spustí aplikaci<br />
 Actor	Uzivatel<br />  
 	
-Precondition<br />  	
-					Uživatel má přístup k aplikaci a má funkční rozhraní.<br />  
-Postcondition<br /> 	
-					Aplikace se správně spustila a otevřelo se okno úvodního menu.<br />  
-Base Sequence<br />  	
-					1.	Uživatel spustí aplikaci<br />  
-					2.	Uživateli se zobrazí GUI aplikace<br />  
-Branch Sequence<br /> 	 
-Exception Sequence<br /> 	 
-					1.	Uživatel spustí aplikaci<br />  
-					2.	Aplikace se spustí s chybou 
-					3.	Uživatel restartuje aplikaci 
-					4.	Uživateli se zobrazí GUI aplikace 
-Sub UseCase 	
-Note	 
+Precondition<br />
+Uživatel má přístup k aplikaci a má funkční rozhraní.<br />
+Postcondition<br />
+Aplikace se správně spustila a otevřelo se okno úvodního menu.<br />
+Base Sequence<br />
+1.	Uživatel spustí aplikaci<br />
+2.	Uživateli se zobrazí GUI aplikace<br />
+Branch Sequence<br />
+Exception Sequence<br />
+1.	Uživatel spustí aplikaci<br />  
+2.	Aplikace se spustí s chybou<br /> 
+3.	Uživatel restartuje aplikaci<br /> 
+4.	Uživateli se zobrazí GUI aplikace<br /> 
+Sub UseCase<br /> 	
+Note<br /> 
 
- 
-Ukončit aplikaci 
+Ukončit aplikaci<br />
 
-UseCase	Ukončit aplikaci 
-Summary	Uživatel ukončuje aplikaci 
-Actor	Uzivatel 
-Precondition 	
-					Aplikace je spuštěna. 
-Postcondition
-					Aplikace se správně ukončila a rezervace je uložena. 
-Base Sequence	
-					1.	Uživatel dá příkaz k ukončení aplikace
-					2.	Systém uloží rezervace. Viz UC Uložit záznam3. Aplikace se ukončí
-Branch Sequence	
-Exception Sequence	
-					1.	Uživatel dá příkaz k ukončení aplikace
-					2.	Dojde k chybě při ukládání rezervace.  Viz UC Uložit záznam
-					3.	Uživatel chybu opraví
-					4.	Systém uloží rezervace
-					5.	Aplikace se ukončí
-Sub UseCase	Uložit záznam
-Note	
+UseCase	Ukončit aplikaci<br />
+Summary	Uživatel ukončuje aplikaci<br />
+Actor	Uzivatel<br />
+Precondition<br />
+Aplikace je spuštěna.<br />
+Postcondition<br />
+Aplikace se správně ukončila a rezervace je uložena.<br />
+Base Sequence<br />	
+1.	Uživatel dá příkaz k ukončení aplikace<br />
+2.	Systém uloží rezervace. Viz UC Uložit záznam3. Aplikace se ukončí<br />
+Branch Sequence<br />
+Exception Sequence<br />
+1.	Uživatel dá příkaz k ukončení aplikace<br />
+2.	Dojde k chybě při ukládání rezervace.  Viz UC Uložit záznam<br />
+3.	Uživatel chybu opraví<br />
+4.	Systém uloží rezervace<br />
+5.	Aplikace se ukončí<br />
+Sub UseCase	Uložit záznam<br />
+Note<br />
 
+Uložit záznam<br />
+
+UseCase	Uložit záznam<br />
+Summary	Uživatel uloží záznam<br />
+Actor	Uzivatel<br />
+Precondition<br />
+Aplikace je spuštěna a je co uložit<br />
+Postcondition<br />
+Záznam je uložen v databázi<br />
+Base Sequence<br />
+1.	Uživatel klikne na tlačítko "uložit"<br />
+2.	Systém uloží záznam<br />
+3.	Záznam je uložen v databázi<br />
+Branch Sequence<br />
+Exception Sequence<br />
+1.	Uživatel klikne na tlačítko "uložit"<br />
+2.	Uložení skončí chybou<br />
+3.	Uživatel zkontroluje data a klikne na tlačítko znovu<br />
+4.	Záznam je uložen v databázi<br />
+Sub UseCase<br />	
+Note<br />
+
+Udržovat údaje o stolu<br />
+
+UseCase	Udržovat údaje o stolu<br />
+Summary	Uživatel udržuje údaje o stolu (mění počet míst, mění stůl na kuřácký a naopa k, ruší, prohlíží).<br />
+Actor	Uzivatel<br />
+Precondition<br />	
+Stůl je k dispozici.<br />
+Stůl je buď kuřácký, nebo nekuřácký.<br />
+Postcondition<br />
+Všechny údaje jsou správně vyplněny Stůl je k dispozici.<br />
+Base Sequence<br />
+1.	Uživatel si vybere danou operaci se stolem<br />
+2.	Systém připraví dané okno pro manipulace se stolem<br />
+3.	Uživatel vybere stůl, který chce udržovat<br />
+4.	Systém zjistí na jakém stole se rezervace nachází viz. UC Nalézt stůl<br />
+5.	Uživatel vloží nová data o rezervaci<br />
+6.	Systém ověří správnost údajů<br />
+7.	Systém upraví pramatery stolu v seznamu stolů<br />
+Branch Sequence<br />
+Exception Sequence<br />
+1.	Uživatel si vybere danou operaci se stolem<br />
+2.	Systém připraví dané okno pro manipulace se stolem<br />
+3.	Uživatel vybere stůl, který chce udržovat<br />
+4.	Systém zjistí na jakém stole se rezervace nachází viz. UC Nalézt stůl<br />
+5.	Uživatel vloží nová data o rezervaci<br />
+6.	Systém ověří správnost údajů<br />
+7.	Systém upozorní na chybu v rezervaci<br />
+8.	Uživatel chybu opraví<br />
+9.	Systém upraví pramatery stolu v seznamu stolů<br />
+Sub UseCase	Nalézt stůl<br />
+Note<br />
+
+Nalézt stůl<br />
+
+UseCase	Nalézt stůl<br />
+Summary	Systém udržuje údaje o stolech a nalezne stůl na kterém je daná rezervace<br />
+Actor	Uzivatel<br />
+Precondition<br />
+V restauraci se nacházejí evidované stoly<br />
+V systému je záznam o těchto stolech<br />
+Postcondition<br />
+Záznam o stolech je aktuální<br />
+Base Sequence<br />
+1.	Uživatel chce nalézt záznam o daném stolu<br />
+2.	Systém nalezne záznam o daném stolu<br />
+3.	Systém předá záznam uživateli<br />
+Branch Sequence<br />
+Exception Sequence<br />
+1.	Uživatel chce nalézt záznam o daném stolu<br />
+2.	Systém nenalezne záznam o daném stolu<br />
+3.	Systém upozorní uživatele na chybu<br />
+4.	Uživatel chybu upraví<br />
+5.	Systém předá záznam uživateli<br />
+Sub UseCase<br />
+Note<br />
+
+Udržovat údaje o rezervaci<br />
+
+UseCase	Udržovat údaje o rezervaci<br />
+Summary	Uživatel udržuje údaje (zakládá, mění, ruší, prohlíží) o rezervaci<br />
+Actor	Uzivatel<br />
+Precondition<br />
+Stůl, kde je vystavena rezervace existuje.<br />
+Datum na které je rezervace vystavena existuje.<br />
+Restaurace je otevřená v hodinu, která je uvedena v rezervaci<br />
+Postcondition<br />	
+Všechny údaje rezervace jsou správně vyplněny<br />
+Rezervace je k dispozici<br />
+Base Sequence<br />
+1.	Uživatel si vybere danou operaci s rezervací<br />
+2.	Systém připraví dané okno pro manipulace s rezervací<br />
+3.	Uživatel vybere rezervaci, kterou chce udržovat<br />
+4.	Systém zjistí na jakém stole se rezervace nachází viz. UC Nalézt stůl<br />
+5.	Uživatel vloží nová data o rezervaci<br />
+6.	Systém ověří správnost údajů<br />
+7.	Systém upraví rezervaci a záznam o jejím výskytu<br />
+Branch Sequence<br />
+Exception Sequence<br />
+1.	Uživatel si vybere danou operaci s rezervací<br />
+2.	Systém připraví dané okno pro manipulace s rezervací<br />
+3.	Uživatel vybere rezervaci, kterou chce udržovat<br />
+4.	Systém zjistí na jakém stole se rezervace nachází viz. UC Nalézt stůl<br />
+5.	Uživatel vloží nové data o rezervaci<br />
+6.	Systém ověří správnost údajů<br />
+7.	Systém upozorní na chybu v rezervaci<br />
+8.	Uživatel chybu opraví<br />
+9.	Systém upraví rezervaci a záznam o jejím výskytu<br />
+Sub UseCase	Nalézt stůl<br />
+Note<br />
  
-Uložit záznam	
+Struktura souborů nebo struktura databáze:<br />
+podoba CSV dokumentu<br />
+stul;pocet mist;kuracky;den;měsíc;rok;hodina;jmeno;<br />
 
-UseCase	Uložit záznam
-Summary	Uživatel uloží záznam
-Actor	Uzivatel
-Precondition	
-					Aplikace je spuštěna a je co uložit
-Postcondition	
-					Záznam je uložen v databázi
-Base Sequence	
-					1.	Uživatel klikne na tlačítko "uložit"
-					2.	Systém uloží záznam
-					3.	Záznam je uložen v databázi
-Branch Sequence	
-Exception Sequence	
-					1.	Uživatel klikne na tlačítko "uložit"
-					2.	Uložení skončí chybou
-					3.	Uživatel zkontroluje data a klikne na tlačítko znovu
-					4.	Záznam je uložen v databázi
-Sub UseCase	
-Note	
-
- 
-Udržovat údaje o stolu	
-
-UseCase	Udržovat údaje o stolu
-Summary	Uživatel udržuje údaje o stolu (mění počet míst, mění stůl na kuřácký a naopa k, ruší, prohlíží).
-Actor	Uzivatel
-Precondition	
-					Stůl je k dispozici.
-					Stůl je buď kuřácký, nebo nekuřácký.
-Postcondition	
-					Všechny údaje jsou správně vyplněny Stůl je k dispozici.
-Base Sequence	
-					1.	Uživatel si vybere danou operaci se stolem
-					2.	Systém připraví dané okno pro manipulace se stolem
-					3.	Uživatel vybere stůl, který chce udržovat
-					4.	Systém zjistí na jakém stole se rezervace nachází viz. UC Nalézt stůl	
-					5.	Uživatel vloží nová data o rezervaci
-					6.	Systém ověří správnost údajů
-					7.	Systém upraví pramatery stolu v seznamu stolů
-Branch Sequence	
-Exception Sequence	
-					1.	Uživatel si vybere danou operaci se stolem
-					2.	Systém připraví dané okno pro manipulace se stolem
-					3.	Uživatel vybere stůl, který chce udržovat
-					4.	Systém zjistí na jakém stole se rezervace nachází viz. UC Nalézt stůl
-					5.	Uživatel vloží nová data o rezervaci
-					6.	Systém ověří správnost údajů
-					7.	Systém upozorní na chybu v rezervaci
-					8.	Uživatel chybu opraví
-					9.	Systém upraví pramatery stolu v seznamu stolů
-Sub UseCase	Nalézt stůl
-Note	
-
- 
-Nalézt stůl	
-
-UseCase	Nalézt stůl
-Summary	Systém udržuje údaje o stolech a nalezne stůl na kterém je daná rezervace
-Actor	Uzivatel
-Precondition	
-					V restauraci se nacházejí evidované stoly
-					V systému je záznam o těchto stolech
-Postcondition	
-					Záznam o stolech je aktuální
-Base Sequence	
-					1.	Uživatel chce nalézt záznam o daném stolu
-					2.	Systém nalezne záznam o daném stolu
-					3.	Systém předá záznam uživateli
-Branch Sequence	
-Exception Sequence	
-					1.	Uživatel chce nalézt záznam o daném stolu
-					2.	Systém nenalezne záznam o daném stolu
-					3.	Systém upozorní uživatele na chybu
-					4.	Uživatel chybu upraví
-					5.	Systém předá záznam uživateli
-Sub UseCase	
-Note	
-
-Udržovat údaje o rezervaci	
-
-UseCase	Udržovat údaje o rezervaci
-Summary	Uživatel udržuje údaje (zakládá, mění, ruší, prohlíží) o rezervaci
-Actor	Uzivatel
-Precondition	
-					Stůl, kde je vystavena rezervace existuje.
-					Datum na které je rezervace vystavena existuje.
-					Restaurace je otevřená v hodinu, která je uvedena v rezervaci
-Postcondition	
-					Všechny údaje rezervace jsou správně vyplněny
-					Rezervace je k dispozici
-Base Sequence	
-					1.	Uživatel si vybere danou operaci s rezervací
-					2.	Systém připraví dané okno pro manipulace s rezervací
-					3.	Uživatel vybere rezervaci, kterou chce udržovat
-					4.	Systém zjistí na jakém stole se rezervace nachází viz. UC Nalézt stůl
-					5.	Uživatel vloží nová data o rezervaci
-					6.	Systém ověří správnost údajů
-					7.	Systém upraví rezervaci a záznam o jejím výskytu
-Branch Sequence	
-Exception Sequence	
-					1.	Uživatel si vybere danou operaci s rezervací
-					2.	Systém připraví dané okno pro manipulace s rezervací
-					3.	Uživatel vybere rezervaci, kterou chce udržovat
-					4.	Systém zjistí na jakém stole se rezervace nachází viz. UC Nalézt stůl
-					5.	Uživatel vloží nové data o rezervaci
-					6.	Systém ověří správnost údajů
-					7.	Systém upozorní na chybu v rezervaci
-					8.	Uživatel chybu opraví
-					9.	Systém upraví rezervaci a záznam o jejím výskytu
-Sub UseCase	Nalézt stůl
-Note	
-
- 
-Struktura souborů nebo struktura databáze: 
-podoba CSV dokumentu
-stul;pocet mist;kuracky;den;měsíc;rok;hodina;jmeno;
-
-Konvence
-getter - vždy get(název atributu)
-setter - vždy set(název atributu)
-boolean getter	- is(název atributu)
-pokud je atribut boolean - napsat jako sloveso
+Konvence<br />
+getter - vždy get(název atributu)<br />
+setter - vždy set(název atributu)<br />
+boolean getter	- is(název atributu)<br />
+pokud je atribut boolean - napsat jako sloveso<br />
 
