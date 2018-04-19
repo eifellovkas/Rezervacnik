@@ -5,25 +5,25 @@ Zadání: Rezervace míst v restauraci (2-3 řešitelé)<br />
 Aplikace na podporu rezervací míst v restauraci. Aplikace eviduje stoly s počtem míst, umístění nekuřácký/kuřácký. Zákazníci si objednávají rezervaci na den a hodinu.<br />
 
 Doplnění zadání<br />
-Obsluha restaurace zadává údaje, které získá od zákazníka, např. skrz telefonické objednání.<br />
+Obsluha restaurace zadává údaje, které získá od zákazníka, např. skrz telefonické objednání. Obsluha bude moci spravovat stoly a objednávky a bude mít možnost vidět, které objednávky se v daný čas uskuteční<br />
 
 Seznam úkolů:<br />
 
 Třídy:<br />
 
-Aneta Bukovjanová – třída Rezervace<br />
+Aneta Bukovjanová – třída Stůl<br />
 Martin Havlík – třída Restaurace<br />
-Václav Pleskač – třída Stůl<br />
+Václav Pleskač – třída Rezervace<br />
 
-Třída, zákazník se nebude implementovat. Podle doporučení by měla zahrnovat možnost zjištovat 
+Třída zákazník se nebude implementovat. Podle doporučení by měla zahrnovat možnost zjištovat, v jaké časy zákazník rád chodí do restaurace.<br />
 
 ![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/class.png)
 
 Návrhy:<br />
 
-Aneta Bukovjanová – okna týkající se rezervace (správa rezervace, nová rezervace)<br />
+Aneta Bukovjanová – okna týkající se stolů (správa stolů, nový stůl)<br />
 Martin Havlík – realizování ukládaní souborů (čtení souborů), spuštění GUI, úvodní menu<br />
-Václav Pleskač – okna týkající se stolů (správa stolů, nový stůl)<br />
+Václav Pleskač – okna týkající se rezervace (správa rezervace, nová rezervace)<br />
 
 ![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/use.png)
 
@@ -42,12 +42,14 @@ Aplikace se správně spustila a otevřelo se okno úvodního menu.<br />
 Base Sequence<br />
 1.	Uživatel spustí aplikaci<br />
 2.	Uživateli se zobrazí GUI aplikace<br />
+<br />
 Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel spustí aplikaci<br />  
 2.	Aplikace se spustí s chybou<br /> 
 3.	Uživatel restartuje aplikaci<br /> 
 4.	Uživateli se zobrazí GUI aplikace<br /> 
+<br />
 Sub UseCase<br /> 	
 Note<br /> 
 
@@ -63,6 +65,7 @@ Aplikace se správně ukončila a rezervace je uložena.<br />
 Base Sequence<br />	
 1.	Uživatel dá příkaz k ukončení aplikace<br />
 2.	Systém uloží rezervace. Viz UC Uložit záznam3. Aplikace se ukončí<br />
+<br />
 Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel dá příkaz k ukončení aplikace<br />
@@ -70,6 +73,7 @@ Exception Sequence<br />
 3.	Uživatel chybu opraví<br />
 4.	Systém uloží rezervace<br />
 5.	Aplikace se ukončí<br />
+<br />
 Sub UseCase	Uložit záznam<br />
 Note<br />
 
@@ -86,12 +90,14 @@ Base Sequence<br />
 1.	Uživatel klikne na tlačítko "uložit"<br />
 2.	Systém uloží záznam<br />
 3.	Záznam je uložen v databázi<br />
+<br />
 Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel klikne na tlačítko "uložit"<br />
 2.	Uložení skončí chybou<br />
 3.	Uživatel zkontroluje data a klikne na tlačítko znovu<br />
 4.	Záznam je uložen v databázi<br />
+<br />
 Sub UseCase<br />	
 Note<br />
 
@@ -113,6 +119,7 @@ Base Sequence<br />
 5.	Uživatel vloží nová data o rezervaci<br />
 6.	Systém ověří správnost údajů<br />
 7.	Systém upraví pramatery stolu v seznamu stolů<br />
+<br />
 Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel si vybere danou operaci se stolem<br />
@@ -124,6 +131,7 @@ Exception Sequence<br />
 7.	Systém upozorní na chybu v rezervaci<br />
 8.	Uživatel chybu opraví<br />
 9.	Systém upraví pramatery stolu v seznamu stolů<br />
+<br />
 Sub UseCase	Nalézt stůl<br />
 Note<br />
 
@@ -141,6 +149,7 @@ Base Sequence<br />
 1.	Uživatel chce nalézt záznam o daném stolu<br />
 2.	Systém nalezne záznam o daném stolu<br />
 3.	Systém předá záznam uživateli<br />
+<br />
 Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel chce nalézt záznam o daném stolu<br />
@@ -148,6 +157,7 @@ Exception Sequence<br />
 3.	Systém upozorní uživatele na chybu<br />
 4.	Uživatel chybu upraví<br />
 5.	Systém předá záznam uživateli<br />
+<br />
 Sub UseCase<br />
 Note<br />
 
@@ -171,6 +181,7 @@ Base Sequence<br />
 5.	Uživatel vloží nová data o rezervaci<br />
 6.	Systém ověří správnost údajů<br />
 7.	Systém upraví rezervaci a záznam o jejím výskytu<br />
+<br />
 Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel si vybere danou operaci s rezervací<br />
@@ -182,6 +193,7 @@ Exception Sequence<br />
 7.	Systém upozorní na chybu v rezervaci<br />
 8.	Uživatel chybu opraví<br />
 9.	Systém upraví rezervaci a záznam o jejím výskytu<br />
+<br />
 Sub UseCase	Nalézt stůl<br />
 Note<br />
  
