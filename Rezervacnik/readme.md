@@ -15,6 +15,8 @@ Aneta Bukovjanová – třída Rezervace<br />
 Martin Havlík – třída Restaurace<br />
 Václav Pleskač – třída Stůl<br />
 
+Třída, zákazník se nebude implementovat. Podle doporučení by měla zahrnovat možnost zjištovat 
+
 ![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/class.png)
 
 Návrhy:<br />
