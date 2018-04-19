@@ -8,7 +8,7 @@ Seznam úkolů:
 
 Třídy:
 
-Aneta Bukovjanová – třída Datum a Rezervace
+Aneta Bukovjanová – třída Rezervace
 Martin Havlík – třída Restaurace
 Václav Pleskač – třída Stůl
 
