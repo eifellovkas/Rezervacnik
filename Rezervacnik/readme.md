@@ -34,24 +34,23 @@ Spustit aplikaci<br />
 UseCase	Spustit aplikaci<br />
 Summary	Uživatel spustí aplikaci<br />
 Actor	Uzivatel<br />  
-	
 Precondition<br />
-Uživatel má přístup k aplikaci a má funkční rozhraní.<br />
+1.	Uživatel má přístup k aplikaci a má funkční rozhraní.<br />
+<br />
 Postcondition<br />
-Aplikace se správně spustila a otevřelo se okno úvodního menu.<br />
+1.	Aplikace se správně spustila a otevřelo se okno úvodního menu.<br />
+<br />
 Base Sequence<br />
 1.	Uživatel spustí aplikaci<br />
 2.	Uživateli se zobrazí GUI aplikace<br />
 <br />
-Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel spustí aplikaci<br />  
 2.	Aplikace se spustí s chybou<br /> 
 3.	Uživatel restartuje aplikaci<br /> 
 4.	Uživateli se zobrazí GUI aplikace<br /> 
 <br />
-Sub UseCase<br /> 	
-Note<br /> 
+
 
 Ukončit aplikaci<br />
 
@@ -59,14 +58,15 @@ UseCase	Ukončit aplikaci<br />
 Summary	Uživatel ukončuje aplikaci<br />
 Actor	Uzivatel<br />
 Precondition<br />
-Aplikace je spuštěna.<br />
+1.	Aplikace je spuštěna.<br />
+<br />
 Postcondition<br />
-Aplikace se správně ukončila a rezervace je uložena.<br />
+1.	Aplikace se správně ukončila a rezervace je uložena.<br />
+<br />
 Base Sequence<br />	
 1.	Uživatel dá příkaz k ukončení aplikace<br />
 2.	Systém uloží rezervace. Viz UC Uložit záznam3. Aplikace se ukončí<br />
 <br />
-Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel dá příkaz k ukončení aplikace<br />
 2.	Dojde k chybě při ukládání rezervace.  Viz UC Uložit záznam<br />
@@ -75,7 +75,6 @@ Exception Sequence<br />
 5.	Aplikace se ukončí<br />
 <br />
 Sub UseCase	Uložit záznam<br />
-Note<br />
 
 Uložit záznam<br />
 
@@ -83,15 +82,16 @@ UseCase	Uložit záznam<br />
 Summary	Uživatel uloží záznam<br />
 Actor	Uzivatel<br />
 Precondition<br />
-Aplikace je spuštěna a je co uložit<br />
+1.	Aplikace je spuštěna a je co uložit<br />
+<br />
 Postcondition<br />
-Záznam je uložen v databázi<br />
+1.	Záznam je uložen v databázi<br />
+<br />
 Base Sequence<br />
 1.	Uživatel klikne na tlačítko "uložit"<br />
 2.	Systém uloží záznam<br />
 3.	Záznam je uložen v databázi<br />
 <br />
-Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel klikne na tlačítko "uložit"<br />
 2.	Uložení skončí chybou<br />
@@ -99,7 +99,6 @@ Exception Sequence<br />
 4.	Záznam je uložen v databázi<br />
 <br />
 Sub UseCase<br />	
-Note<br />
 
 Udržovat údaje o stolu<br />
 
@@ -107,10 +106,13 @@ UseCase	Udržovat údaje o stolu<br />
 Summary	Uživatel udržuje údaje o stolu (mění počet míst, mění stůl na kuřácký a naopa k, ruší, prohlíží).<br />
 Actor	Uzivatel<br />
 Precondition<br />	
-Stůl je k dispozici.<br />
-Stůl je buď kuřácký, nebo nekuřácký.<br />
+1.	Stůl je k dispozici.<br />
+2.	Stůl je buď kuřácký, nebo nekuřácký.<br />
+<br />
 Postcondition<br />
-Všechny údaje jsou správně vyplněny Stůl je k dispozici.<br />
+1.	Všechny údaje jsou správně vyplněny<br />
+2.	Stůl je k dispozici.<br />
+<br />
 Base Sequence<br />
 1.	Uživatel si vybere danou operaci se stolem<br />
 2.	Systém připraví dané okno pro manipulace se stolem<br />
@@ -120,7 +122,6 @@ Base Sequence<br />
 6.	Systém ověří správnost údajů<br />
 7.	Systém upraví pramatery stolu v seznamu stolů<br />
 <br />
-Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel si vybere danou operaci se stolem<br />
 2.	Systém připraví dané okno pro manipulace se stolem<br />
@@ -133,7 +134,6 @@ Exception Sequence<br />
 9.	Systém upraví pramatery stolu v seznamu stolů<br />
 <br />
 Sub UseCase	Nalézt stůl<br />
-Note<br />
 
 Nalézt stůl<br />
 
@@ -141,16 +141,17 @@ UseCase	Nalézt stůl<br />
 Summary	Systém udržuje údaje o stolech a nalezne stůl na kterém je daná rezervace<br />
 Actor	Uzivatel<br />
 Precondition<br />
-V restauraci se nacházejí evidované stoly<br />
-V systému je záznam o těchto stolech<br />
+1.	V restauraci se nacházejí evidované stoly<br />
+2.	V systému je záznam o těchto stolech<br />
+<br />
 Postcondition<br />
-Záznam o stolech je aktuální<br />
+1.	Záznam o stolech je aktuální<br />
+<br />
 Base Sequence<br />
 1.	Uživatel chce nalézt záznam o daném stolu<br />
 2.	Systém nalezne záznam o daném stolu<br />
 3.	Systém předá záznam uživateli<br />
 <br />
-Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel chce nalézt záznam o daném stolu<br />
 2.	Systém nenalezne záznam o daném stolu<br />
@@ -159,7 +160,6 @@ Exception Sequence<br />
 5.	Systém předá záznam uživateli<br />
 <br />
 Sub UseCase<br />
-Note<br />
 
 Udržovat údaje o rezervaci<br />
 
@@ -167,12 +167,14 @@ UseCase	Udržovat údaje o rezervaci<br />
 Summary	Uživatel udržuje údaje (zakládá, mění, ruší, prohlíží) o rezervaci<br />
 Actor	Uzivatel<br />
 Precondition<br />
-Stůl, kde je vystavena rezervace existuje.<br />
-Datum na které je rezervace vystavena existuje.<br />
-Restaurace je otevřená v hodinu, která je uvedena v rezervaci<br />
+1.	Stůl, kde je vystavena rezervace existuje.<br />
+2.	Datum na které je rezervace vystavena existuje.<br />
+3.	Restaurace je otevřená v hodinu, která je uvedena v rezervaci<br />
+<br />
 Postcondition<br />	
-Všechny údaje rezervace jsou správně vyplněny<br />
-Rezervace je k dispozici<br />
+1.	Všechny údaje rezervace jsou správně vyplněny<br />
+2.	Rezervace je k dispozici<br />
+<br />
 Base Sequence<br />
 1.	Uživatel si vybere danou operaci s rezervací<br />
 2.	Systém připraví dané okno pro manipulace s rezervací<br />
@@ -182,7 +184,6 @@ Base Sequence<br />
 6.	Systém ověří správnost údajů<br />
 7.	Systém upraví rezervaci a záznam o jejím výskytu<br />
 <br />
-Branch Sequence<br />
 Exception Sequence<br />
 1.	Uživatel si vybere danou operaci s rezervací<br />
 2.	Systém připraví dané okno pro manipulace s rezervací<br />
@@ -195,7 +196,6 @@ Exception Sequence<br />
 9.	Systém upraví rezervaci a záznam o jejím výskytu<br />
 <br />
 Sub UseCase	Nalézt stůl<br />
-Note<br />
  
 Struktura souborů nebo struktura databáze:<br />
 podoba CSV dokumentu<br />
