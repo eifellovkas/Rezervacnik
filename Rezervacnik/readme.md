@@ -4,6 +4,9 @@ Aneta Bukovjanová, Martin Havlík, Václav Pleskač<br />
 Zadání: Rezervace míst v restauraci (2-3 řešitelé)<br />
 Aplikace na podporu rezervací míst v restauraci. Aplikace eviduje stoly s počtem míst, umístění nekuřácký/kuřácký. Zákazníci si objednávají rezervaci na den a hodinu.<br />
 
+Doplnění zadání<br />
+Obsluha restaurace zadává údaje, které získá od zákazníka, např. skrz telefonické objednání.<br />
+
 Seznam úkolů:<br />
 
 Třídy:<br />
@@ -20,6 +23,7 @@ Aneta Bukovjanová – okna týkající se rezervace (správa rezervace, nová r
 Martin Havlík – realizování ukládaní souborů (čtení souborů), spuštění GUI, úvodní menu<br />
 Václav Pleskač – okna týkající se stolů (správa stolů, nový stůl)<br />
 
+![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/use.png)
 
 Use case slovní popis včetně scénářů<br />
 
@@ -182,6 +186,18 @@ Note<br />
 Struktura souborů nebo struktura databáze:<br />
 podoba CSV dokumentu<br />
 stul;pocet mist;kuracky;den;měsíc;rok;hodina;jmeno;<br />
+
+Návrh oken<br />
+
+![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/novaRezervace.png)
+
+![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/novyStul.png)
+
+![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/spravaRezervace.png)
+
+![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/spravaStolu.png)
+
+![alt text](https://github.com/eifellovkas/Rezervacnik/blob/master/Rezervacnik/src/main/resources/ui/uvod.png)
 
 Konvence<br />
 getter - vždy get(název atributu)<br />
