@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.eifellovkas.Rezervacnik.ui.ControllerUvodniMenu">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1200.0" minWidth="10.0" prefWidth="1200.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="374.0" minWidth="0.0" prefWidth="0.0" />
@@ -21,13 +21,13 @@
         <menus>
           <Menu mnemonicParsing="false" text="Stůl">
             <items>
-              <MenuItem mnemonicParsing="false" text="Nový" />
-                  <MenuItem mnemonicParsing="false" text="Spravovat" />
+              <MenuItem mnemonicParsing="false" onAction="#klikNovyStul" text="Nový" />
+                  <MenuItem mnemonicParsing="false" onAction="#klikSpravovatStul" text="Spravovat" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Objednávka">
             <items>
-              <MenuItem mnemonicParsing="false" text="Nová" />
+              <MenuItem mnemonicParsing="false" onAction="#klikNovaRezervace" text="Nová" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Uložit">
