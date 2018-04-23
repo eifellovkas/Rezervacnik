@@ -24,7 +24,7 @@ public class ControllerUvodniMenu extends GridPane{
 	
 	public void inicializuj(Restaurace restaurace) {
 		this.restaurace = restaurace;
-		
+		restaurace.nactiRezervace();
 		int rok = Calendar.getInstance().get(Calendar.YEAR);
 		Integer[] roky = { rok, rok+1};
 		seznamRoku.getItems().addAll(roky);
