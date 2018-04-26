@@ -29,4 +29,10 @@ public class Start extends Application{
     	primaryStage.show();
     	primaryStage.setTitle("Úvodní menu aplikace");
 	}
+	
+	@Override
+	public void stop() throws Exception {
+	     System.out.println("konec");
+	}
+	
 }
