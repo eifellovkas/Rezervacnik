@@ -1,5 +1,6 @@
 package com.github.eifellovkas.Rezervacnik.logika;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -18,66 +19,26 @@ public class Restaurace {
 	public void pokus() {
 		System.out.println("aaaa");
 	}
-		
-	public void nactiRezervace() {
+	
+	public void nactiRezervace(String cestaText) {
 		try {	
-			URL cesta = this.getClass().getResource("/logika/databaze.txt");
+			URL cesta = this.getClass().getResource(cestaText);
 			File soubor = new File(cesta.getFile());
-			FileReader vstup = new FileReader (soubor);
-			int cisloZnak;
+			BufferedReader vstup = new BufferedReader(new FileReader(soubor));
+			String radek = null;
 			
-			while ((cisloZnak=vstup.read()) != -1) {
-				String stul = "Stůl ";
-				String pocetMist = "";
-				String kuracky = "";
-				String den = "";
-				String mesic = "";
-				String rok = "";
-				String hodina = "";
-				String jmeno = "";
+			while ((radek=vstup.readLine()) != null) {
+				String[] slovo = radek.split(";");
+				
+				String stul = slovo[0];
+				String pocetMist = slovo[1];
+				String kuracky = slovo[2];
+				String den = slovo[3];
+				String mesic = slovo[4];
+				String rok = slovo[5];
+				String hodina = slovo[6];
+				String jmeno = slovo[7];
 				String x = "";
-				
-				while ((cisloZnak=vstup.read()) != 59) {
-					char znak = (char) cisloZnak;
-					stul = stul + znak;
-				}
-				
-				while ((cisloZnak=vstup.read()) != 59) {
-					char znak = (char) cisloZnak;
-					pocetMist = pocetMist + znak;
-				}
-				
-				while ((cisloZnak=vstup.read()) != 59) {
-					char znak = (char) cisloZnak;
-					kuracky = kuracky + znak;
-				}
-				
-				while ((cisloZnak=vstup.read()) != 59) {
-					char znak = (char) cisloZnak;
-					den = den + znak;
-				}
-				
-				while ((cisloZnak=vstup.read()) != 59) {
-					char znak = (char) cisloZnak;
-					mesic = mesic + znak;
-				}
-				
-				while ((cisloZnak=vstup.read()) != 59) {
-					char znak = (char) cisloZnak;
-					rok = rok + znak;
-				}
-				
-				while ((cisloZnak=vstup.read()) != 59) {
-					char znak = (char) cisloZnak;
-					hodina = hodina + znak;
-				}
-				
-				while ((cisloZnak=vstup.read()) != 59) {
-					char znak = (char) cisloZnak;
-					jmeno = jmeno + znak;
-				}
-				
-				cisloZnak=vstup.read();
 				
 				x = stul + ";" + pocetMist + ";" + kuracky + ";" + den + ";" + mesic + ";" + rok + ";" + hodina + ";" + jmeno; 
 				System.out.println(x);	
