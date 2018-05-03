@@ -25,16 +25,7 @@ public class ControllerUvodniMenu extends GridPane{
 	public void inicializuj(Restaurace restaurace) {
 		this.restaurace = restaurace;
 		restaurace.nactiRezervace("/logika/databaze.txt");
-		int rok = Calendar.getInstance().get(Calendar.YEAR);
-		Integer[] roky = { rok, rok+1};
-		seznamRoku.getItems().addAll(roky);
-		
-		seznamMesicu.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12); 
-		seznamDnu.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31); 
-		seznamHodin.getItems().addAll(11,12,13,14,15,16,17,18,19,20,21,22,23); 
 	}
-	
-	
 	
 	@FXML public void klikNovyStul(ActionEvent event) throws Exception{
 		FXMLLoader loader = new FXMLLoader();

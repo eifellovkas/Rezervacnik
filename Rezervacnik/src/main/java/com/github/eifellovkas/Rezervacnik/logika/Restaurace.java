@@ -57,13 +57,37 @@ public class Restaurace {
 		public void setPocetStolu(int pocetStolu) {
 			this.pocetStolu = pocetStolu;
 		}
+/**	
+		public void pridejStul(String nazev, Stul stul) {
+			seznamStolu.put(nazev, stul);
+		}
 		
-//		public void pridejStul(String nazev, Stul stul) {
-//			seznamStolu.put(nazev, stul);
-//		}
+		public void odeberStul(String nazev, Stul stul) {
+			seznamStolu.remove(nazev, stul);
+		}
 		
-//		public void odeberStul(String nazev) {
-//			seznamStolu.remove(nazev, stul);
-//		}
-
+		public Stul getStul(String nazev) {
+			return seznamStolu.get(nazev);
+		}
+		
+		public boolean obsahujeStul(String nazev) {
+			return seznamStolu.containsKey(nazev);
+		}
+		
+		public void pridejRezervaci(String nazev, Rezervace rezervace) {
+			seznamRezervaci.put(nazev, rezervace);
+		}
+		
+		public void odeberRezervaci(String nazev, Rezervace rezervace) {
+			seznamRezervaci.remove(nazev, rezervace);
+		}
+		
+		public Rezervace getRezervace(String nazev) {
+			return seznamRezervaci.get(nazev);
+		}
+		
+		public boolean obsahujeRezervaci(String nazev) {
+			return seznamRezervaci.containsKey(nazev);
+		}
+**/
 }
