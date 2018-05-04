@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.github.eifellovkas.Rezervacnik.logika.Restaurace;
@@ -22,7 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -43,6 +42,23 @@ public class ControllerUvodniMenu extends GridPane{
 		List<String> list = new ArrayList<String>();
 		seznamRezervaci = FXCollections.observableList(list);
 	}
+	
+	@FXML public void klikRezervace(MouseEvent arg0) throws Exception {
+		String vyber = rezervaceSeznam.getSelectionModel().getSelectedItem();
+		if (restaurace.obsahujeRezervaci(vyber)) {
+			Rezervace rez = restaurace.getRezervace(vyber);
+			FXMLLoader loader = new FXMLLoader();
+	    	loader.setLocation(getClass().getResource("/ui/spravaRezervaci.fxml"));    	
+	    	Parent root = loader.load();
+	    	ControllerStulNovy controller = new ControllerRezPokus(rez);
+	    	controller = loader.getController(); 	
+	    	Stage novyStul = new Stage();
+	    	novyStul.setScene(new Scene(root));
+	    	novyStul.show();
+	    	novyStul.setTitle("Uprava Rezervace");	
+		}	
+	}
+	
 	
 	@FXML public void klikNovyStul(ActionEvent event) throws Exception{
 		FXMLLoader loader = new FXMLLoader();
