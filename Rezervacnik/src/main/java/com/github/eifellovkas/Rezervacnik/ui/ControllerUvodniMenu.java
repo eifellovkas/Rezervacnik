@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import com.github.eifellovkas.Rezervacnik.logika.Restaurace;
+import com.github.eifellovkas.Rezervacnik.logika.Stul;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +25,8 @@ public class ControllerUvodniMenu extends GridPane{
 	
 	public void inicializuj(Restaurace restaurace) {
 		this.restaurace = restaurace;
-		restaurace.nactiRezervace("/logika/databaze.txt");
+		restaurace.nacti("/logika/stoly.txt",1);
+		restaurace.nacti("/logika/rezervace.txt",2);
 	}
 	
 	@FXML public void klikNovyStul(ActionEvent event) throws Exception{

@@ -10,7 +10,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Start extends Application{
-
+	private Restaurace restaurace = new Restaurace();
+	
 	public static void main(String[] args) {
             launch(args);
     }
@@ -20,7 +21,7 @@ public class Start extends Application{
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("/ui/uvodniMenu.fxml"));    	
     	Parent root = loader.load();
-    	Restaurace restaurace = new Restaurace();
+    	restaurace = new Restaurace();
     	
     	ControllerUvodniMenu controller = loader.getController(); 	
     	controller.inicializuj(restaurace);
@@ -32,6 +33,8 @@ public class Start extends Application{
 	
 	@Override
 	public void stop() throws Exception {
+		 restaurace.uloz(1);
+		 restaurace.uloz(2);
 	     System.out.println("konec");
 	}
 	
