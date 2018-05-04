@@ -33,8 +33,8 @@ public class Start extends Application{
 	
 	@Override
 	public void stop() throws Exception {
-		 restaurace.uloz(1);
-		 restaurace.uloz(2);
+		 restaurace.uloz("src/main/resources/logika/stoly.txt",1);
+		 restaurace.uloz("src/main/resources/logika/rezervace.txt",2);
 	     System.out.println("konec");
 	}
 	

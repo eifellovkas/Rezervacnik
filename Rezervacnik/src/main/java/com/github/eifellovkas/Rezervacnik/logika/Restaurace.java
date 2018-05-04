@@ -25,6 +25,10 @@ public class Restaurace {
 		System.out.println("aaaa");
 	}
 	
+	public HashMap<String, Rezervace> getSeznamRezervaci(){
+		return seznamRezervaci;
+	}
+	
 	public void nacti(String cestaText, int typVstupu) {
 		try {	
 			URL cesta = this.getClass().getResource(cestaText);
@@ -85,12 +89,12 @@ public class Restaurace {
 		}
 	
 		@SuppressWarnings("deprecation")
-		public void uloz(int typVystupu) {
+		public void uloz(String cestaText, int typVystupu) {
 			try {	
 				BufferedWriter vystup;
 				
 				switch(typVystupu){
-				case 1: vystup = new BufferedWriter(new FileWriter("src/main/resources/logika/stoly.txt"));	
+				case 1: vystup = new BufferedWriter(new FileWriter(cestaText));	
 						for (String stul: seznamStolu.keySet()) {
 								String pocetMist = String.valueOf(getStul(stul).getPocetMist());
 								String nekuracky = String.valueOf(getStul(stul).isNekuracky());
@@ -101,7 +105,7 @@ public class Restaurace {
 						vystup.close();	
 						break;
 				
-				case 2: vystup = new BufferedWriter(new FileWriter("src/main/resources/logika/rezervace.txt"));	
+				case 2: vystup = new BufferedWriter(new FileWriter(cestaText));	
 						for (String rezervace: seznamRezervaci.keySet()) {
 							String stul = null;
 							for (String seznam: seznamStolu.keySet()) {
