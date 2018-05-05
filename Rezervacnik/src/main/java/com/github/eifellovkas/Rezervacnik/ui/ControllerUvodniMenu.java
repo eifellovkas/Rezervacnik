@@ -31,6 +31,7 @@ public class ControllerUvodniMenu extends GridPane{
 	@FXML private ComboBox<Integer>  	seznamHodin;
 	@FXML private DatePicker		  	datumPanel;
 	private ObservableList<String>		seznamRezervaci;
+	private ArrayList<String> 			dataRezervace;
 	@FXML private ListView<String>  	rezervaceSeznam;
 	
 	
@@ -45,18 +46,20 @@ public class ControllerUvodniMenu extends GridPane{
 	
 	@FXML public void klikRezervace(MouseEvent arg0) throws Exception {
 		String vyber = rezervaceSeznam.getSelectionModel().getSelectedItem();
-		if (restaurace.obsahujeRezervaci(vyber)) {
+		int index = rezervaceSeznam.getSelectionModel().getSelectedIndex();
+		System.out.println(vyber);
+		if (vyber!=null && restaurace.obsahujeRezervaci(dataRezervace.get(index))) {
 			Rezervace rez = restaurace.getRezervace(vyber);
 			FXMLLoader loader = new FXMLLoader();
-	    	loader.setLocation(getClass().getResource("/ui/spravaRezervaci.fxml"));    	
-	    	Parent root = loader.load();
-	    	ControllerStulNovy controller = new ControllerRezPokus(rez);
-	    	controller = loader.getController(); 	
-	    	Stage novyStul = new Stage();
-	    	novyStul.setScene(new Scene(root));
-	    	novyStul.show();
-	    	novyStul.setTitle("Uprava Rezervace");	
-		}	
+			loader.setLocation(getClass().getResource("/ui/spravaRezervaci.fxml"));    	
+			Parent root = loader.load();
+			ControllerStulNovy controller = new ControllerRezPokus(rez);
+			controller = loader.getController(); 	
+			Stage novyStul = new Stage();
+			novyStul.setScene(new Scene(root));
+			novyStul.show();
+			novyStul.setTitle("Uprava Rezervace");	
+		}		
 	}
 	
 	
@@ -110,6 +113,7 @@ public class ControllerUvodniMenu extends GridPane{
 		LocalDate date = datumPanel.getValue();
 		Integer hodina = seznamHodin.getValue();
 		seznamRezervaci.removeAll(seznamRezervaci);
+		dataRezervace = new ArrayList<String>();
 		if (date!=null && hodina!=null) {
 			for (String nazev: restaurace.getSeznamRezervaci().keySet()) {
 				Rezervace rezervace = restaurace.getSeznamRezervaci().get(nazev);	
@@ -118,7 +122,13 @@ public class ControllerUvodniMenu extends GridPane{
 				DateTimeFormatter format2 = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 				String a1 = date.format(format2);
 				if (hodina.equals(rezervace.getHodina()) && a2.equals(a1)) {
-					seznamRezervaci.add(nazev);
+					String[] slovo = nazev.split("-");
+					String stul = slovo[0];
+					String jmeno = slovo[3];
+					String zobraz = stul + jmeno;
+					
+					dataRezervace.add(nazev);
+					seznamRezervaci.add(zobraz);
 				}
 			}
 		}

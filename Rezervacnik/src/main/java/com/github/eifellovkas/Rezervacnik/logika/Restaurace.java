@@ -72,7 +72,7 @@ public class Restaurace {
 							Stul stulInst = getStul(stul);
 							Rezervace rezervace = new Rezervace(date,Integer.parseInt(hodina),jmeno,stulInst);
 							DateFormat datum = new SimpleDateFormat("dd.MM.yyyy");
-							String popis = stul + " - " + datum.format(date)+" - "+jmeno;
+							String popis = stul + " - " + datum.format(date) + " - " + hodina + " - " + jmeno;
 							pridejRezervaci(popis,rezervace);
 						}
 						else {
