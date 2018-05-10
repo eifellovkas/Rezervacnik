@@ -91,7 +91,8 @@ public class ControllerUvodniMenu extends GridPane{
     	loader.setLocation(getClass().getResource("/ui/novyStul.fxml"));    	
     	Parent root = loader.load();
     	ControllerStulNovy controller = new ControllerStulNovy();
-    	controller = loader.getController(); 	
+    	controller = loader.getController(); 
+    	controller.inicializuj();
     	Stage novyStul = new Stage();
     	zamkniVyber();
     	novyStul.setScene(new Scene(root));
