@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1080.0" minWidth="10.0" prefWidth="1080.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="0.0" prefWidth="0.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="127.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="315.0" minHeight="10.0" prefHeight="214.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="266.0" minHeight="10.0" prefHeight="257.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox prefHeight="121.0" prefWidth="1080.0" GridPane.columnIndex="1">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Odstranit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Odstranit" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Label alignment="CENTER" prefHeight="58.0" prefWidth="1106.0" text="Správa rezervací">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label alignment="CENTER" prefHeight="45.0" prefWidth="1086.0" text="Stav rezervace">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="133.0" prefWidth="595.0">
+               <children>
+                  <VBox alignment="CENTER" prefWidth="300.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="400.0" text="Datum" />
+                        <TextArea prefHeight="50.0" prefWidth="200.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="205.0" text="Počet míst" />
+                        <TextArea prefHeight="50.0" prefWidth="200.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="54.0" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="205.0" text="Kuřácký" />
+                        <TextArea prefHeight="50.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextArea>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefWidth="150.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="150.0" text="Stůl" />
+                        <TextArea prefHeight="50.0" prefWidth="150.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefWidth="150.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="205.0" text="Jméno" />
+                        <TextField prefHeight="50.0" prefWidth="150.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <Label alignment="CENTER" prefHeight="45.0" prefWidth="1086.0" text="Úprava rezervace">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="133.0" prefWidth="595.0">
+               <children>
+                  <VBox alignment="CENTER" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Rok" />
+                        <ComboBox prefWidth="100.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefWidth="100.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Mesic" />
+                        <ComboBox prefWidth="100.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Den" />
+                        <ComboBox prefWidth="150.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Hodina" />
+                        <ComboBox prefWidth="100.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="205.0" text="Počet míst" />
+                        <ComboBox prefWidth="200.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="54.0" prefWidth="100.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" prefHeight="21.0" prefWidth="103.0" text="Kuřácký">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefWidth="150.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="150.0" text="Stůl" />
+                        <ComboBox prefHeight="31.0" prefWidth="150.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="54.0" prefWidth="150.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="205.0" text="Jméno" />
+                        <TextField />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="102.0" prefWidth="150.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" text="Upravit">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" text="Resetovat">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</GridPane>
