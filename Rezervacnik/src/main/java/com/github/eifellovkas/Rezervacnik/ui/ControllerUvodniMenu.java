@@ -67,8 +67,9 @@ public class ControllerUvodniMenu extends GridPane{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/ui/spravaRezervaci.fxml"));    	
 			Parent root = loader.load();
-			ControllerSpravaRezervaci controller = new ControllerSpravaRezervaci(rez, dataRezervace.get(index));
-			controller = loader.getController(); 	
+			ControllerSpravaRezervaci controller = new ControllerSpravaRezervaci(/**rez, dataRezervace.get(index)**/);
+			controller = loader.getController();
+			controller.inicializace(rez, dataRezervace.get(index));
 			Stage spravaRezervace = new Stage();
 			zamkniVyber();
 			spravaRezervace.setScene(new Scene(root));
