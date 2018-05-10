@@ -12,6 +12,7 @@ import com.github.eifellovkas.Rezervacnik.logika.Rezervace;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,10 +21,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class ControllerUvodniMenu extends GridPane{
 	private Restaurace restaurace;
@@ -33,6 +36,7 @@ public class ControllerUvodniMenu extends GridPane{
 	private ObservableList<String>		seznamRezervaci;
 	private ArrayList<String> 			dataRezervace;
 	@FXML private ListView<String>  	rezervaceSeznam;
+	@FXML private MenuBar  				menu;
 	
 	
 	public void inicializuj(Restaurace restaurace) {
@@ -44,10 +48,19 @@ public class ControllerUvodniMenu extends GridPane{
 		seznamRezervaci = FXCollections.observableList(list);
 	}
 	
+	public void odemkniVyber() {
+		menu.setDisable(false);
+		rezervaceSeznam.setDisable(false);
+	}
+	
+	public void zamkniVyber() {
+		menu.setDisable(true);
+		rezervaceSeznam.setDisable(true);
+	}
+	
 	@FXML public void klikRezervace(MouseEvent arg0) throws Exception {
 		String vyber = rezervaceSeznam.getSelectionModel().getSelectedItem();
 		int index = rezervaceSeznam.getSelectionModel().getSelectedIndex();
-		System.out.println(vyber);
 		if (vyber!=null && restaurace.obsahujeRezervaci(dataRezervace.get(index))) {
 			Rezervace rez = restaurace.getRezervace(vyber);
 			FXMLLoader loader = new FXMLLoader();
@@ -55,10 +68,19 @@ public class ControllerUvodniMenu extends GridPane{
 			Parent root = loader.load();
 			ControllerStulNovy controller = new ControllerRezPokus(rez);
 			controller = loader.getController(); 	
-			Stage novyStul = new Stage();
-			novyStul.setScene(new Scene(root));
-			novyStul.show();
-			novyStul.setTitle("Uprava Rezervace");	
+			Stage spravaRezervace = new Stage();
+			zamkniVyber();
+			spravaRezervace.setScene(new Scene(root));
+			spravaRezervace.show();
+			spravaRezervace.setTitle("Uprava Rezervace");	
+			
+			spravaRezervace.setOnCloseRequest(new EventHandler<WindowEvent>(){
+
+				public void handle(WindowEvent event) {
+					odemkniVyber();
+				}
+	    		
+	    	});
 		}		
 	}
 	
@@ -70,9 +92,18 @@ public class ControllerUvodniMenu extends GridPane{
     	ControllerStulNovy controller = new ControllerStulNovy();
     	controller = loader.getController(); 	
     	Stage novyStul = new Stage();
+    	zamkniVyber();
     	novyStul.setScene(new Scene(root));
     	novyStul.show();
     	novyStul.setTitle("Nový stůl");
+    	
+    	novyStul.setOnCloseRequest(new EventHandler<WindowEvent>(){
+
+			public void handle(WindowEvent event) {
+				odemkniVyber();
+			}
+    		
+    	});
 		}
 	
 	@FXML public void klikSpravovatStul(ActionEvent event) throws Exception{
@@ -82,9 +113,18 @@ public class ControllerUvodniMenu extends GridPane{
     	ControllerStulNovy controller = new ControllerStulNovy();
     	controller = loader.getController(); 	
     	Stage spravaStolu = new Stage();
+    	zamkniVyber();
     	spravaStolu.setScene(new Scene(root));
     	spravaStolu.show();
     	spravaStolu.setTitle("Správa stolů");
+    	
+    	spravaStolu.setOnCloseRequest(new EventHandler<WindowEvent>(){
+
+			public void handle(WindowEvent event) {
+				odemkniVyber();
+			}
+    		
+    	});
 		}
 	
 	@FXML public void klikNovaRezervace(ActionEvent event) throws Exception{
@@ -94,9 +134,18 @@ public class ControllerUvodniMenu extends GridPane{
     	ControllerStulNovy controller = new ControllerStulNovy();
     	controller = loader.getController(); 	
     	Stage novaRezervace = new Stage();
+    	zamkniVyber();
     	novaRezervace.setScene(new Scene(root));
     	novaRezervace.show();
     	novaRezervace.setTitle("Nová rezervace");
+    	
+    	novaRezervace.setOnCloseRequest(new EventHandler<WindowEvent>(){
+
+			public void handle(WindowEvent event) {
+				odemkniVyber();
+			}
+    		
+    	});
 		}
 	
 	@FXML public void klikUlozit(ActionEvent event){

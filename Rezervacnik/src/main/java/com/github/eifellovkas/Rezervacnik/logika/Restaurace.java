@@ -20,10 +20,6 @@ public class Restaurace {
 		seznamStolu = new HashMap<String, Stul>();
 		seznamRezervaci = new HashMap<String, Rezervace>();		
 	}
-		
-	public void pokus() {
-		System.out.println("aaaa");
-	}
 	
 	public HashMap<String, Rezervace> getSeznamRezervaci(){
 		return seznamRezervaci;
@@ -60,24 +56,32 @@ public class Restaurace {
 						String[] slovo = radek.split(";");
 						
 						String stul = slovo[0];
-						String den = slovo[1];
-						String mesic = slovo[2];
-						String rok = slovo[3];
-						String hodina = slovo[4];
+						int den = Integer.parseInt(slovo[1]);
+						int mesic = Integer.parseInt(slovo[2]);
+						int rok = Integer.parseInt(slovo[3]);
+						int hodina = Integer.parseInt(slovo[4]);
 						String jmeno = slovo[5];
 						
-						@SuppressWarnings("deprecation")
-						Date date = new Date(Integer.parseInt(rok)-1900,Integer.parseInt(mesic)-1,Integer.parseInt(den));
-						if (obsahujeStul(stul)) {
-							Stul stulInst = getStul(stul);
-							Rezervace rezervace = new Rezervace(date,Integer.parseInt(hodina),jmeno,stulInst);
-							DateFormat datum = new SimpleDateFormat("dd.MM.yyyy");
-							String popis = stul + " - " + datum.format(date) + " - " + hodina + " - " + jmeno;
-							pridejRezervaci(popis,rezervace);
-						}
-						else {
-							System.out.println("Stul na který se váže rezervace nenalezen");
-						}			
+						DateFormat datum = new SimpleDateFormat("dd.MM.yyyy");
+						Date dnesniDatum = new Date();
+						
+						int dnesniRok = dnesniDatum.getYear()+1900;
+						int dnesniDen = dnesniDatum.getDate();
+						int dnesniMesic = dnesniDatum.getMonth()+1;
+						
+						if ((rok > dnesniRok) || ((rok == dnesniRok) && (mesic == dnesniMesic) && (den >= dnesniDen)) || ((rok == dnesniRok) && (mesic > dnesniMesic)) ) {
+							@SuppressWarnings("deprecation")
+							Date date = new Date(rok-1900,mesic-1,den);
+							if (obsahujeStul(stul)) {
+								Stul stulInst = getStul(stul);
+								Rezervace rezervace = new Rezervace(date,hodina,jmeno,stulInst);
+								String popis = stul + " - " + datum.format(date) + " - " + hodina + " - " + jmeno;
+								pridejRezervaci(popis,rezervace);
+							}
+							else {
+								System.out.println("Stul na který se váže rezervace nenalezen");
+							}			
+						}					
 					}
 					break;
 			}

@@ -17,7 +17,7 @@
     <RowConstraints maxHeight="531.0" minHeight="0.0" prefHeight="531.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <MenuBar prefHeight="20.0" prefWidth="209.0">
+      <MenuBar fx:id="menu" prefHeight="20.0" prefWidth="209.0">
         <menus>
           <Menu mnemonicParsing="false" text="Stůl">
             <items>
