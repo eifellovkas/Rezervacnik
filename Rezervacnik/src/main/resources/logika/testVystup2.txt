@@ -1,0 +1,3 @@
+Stul 7;6;false
+Stul 6;6;false
+a

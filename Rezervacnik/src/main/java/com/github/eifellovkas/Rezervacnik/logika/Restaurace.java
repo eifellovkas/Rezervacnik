@@ -15,6 +15,7 @@ public class Restaurace {
 	private int pocetStolu = 0;
 	private HashMap<String,Stul> seznamStolu;
 	private HashMap<String, Rezervace> seznamRezervaci;
+	private boolean nacetlo = true; 
 
 	public Restaurace() {
 		seznamStolu = new HashMap<String, Stul>();
@@ -25,8 +26,10 @@ public class Restaurace {
 		return seznamRezervaci;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void nacti(String cestaText, int typVstupu) {
 		try {	
+			nacetlo = true;
 			URL cesta = this.getClass().getResource(cestaText);
 			File soubor = new File(cesta.getFile());
 			BufferedReader vstup = new BufferedReader(new FileReader(soubor));
@@ -35,6 +38,10 @@ public class Restaurace {
 			switch(typVstupu){
 			case 1: while ((radek=vstup.readLine()) != null) {
 						String[] slovo = radek.split(";");
+
+						if (slovo.length != 3) {
+							throw new Exception();
+						}
 						
 						String stul = slovo[0];
 						String pocetMist = slovo[1];
@@ -55,6 +62,10 @@ public class Restaurace {
 			case 2: while ((radek=vstup.readLine()) != null) {
 						String[] slovo = radek.split(";");
 						
+						if (slovo.length != 6) {
+							throw new Exception();
+						}
+						
 						String stul = slovo[0];
 						int den = Integer.parseInt(slovo[1]);
 						int mesic = Integer.parseInt(slovo[2]);
@@ -70,8 +81,8 @@ public class Restaurace {
 						int dnesniMesic = dnesniDatum.getMonth()+1;
 						
 						if ((rok > dnesniRok) || ((rok == dnesniRok) && (mesic == dnesniMesic) && (den >= dnesniDen)) || ((rok == dnesniRok) && (mesic > dnesniMesic)) ) {
-							@SuppressWarnings("deprecation")
 							Date date = new Date(rok-1900,mesic-1,den);
+							
 							if (obsahujeStul(stul)) {
 								Stul stulInst = getStul(stul);
 								Rezervace rezervace = new Rezervace(date,hodina,jmeno,stulInst);
@@ -79,7 +90,10 @@ public class Restaurace {
 								pridejRezervaci(popis,rezervace);
 							}
 							else {
-								System.out.println("Stul na který se váže rezervace nenalezen");
+								if (!seznamRezervaci.isEmpty()) {
+									System.out.println("Stul na který se váže rezervace nenalezen");
+									nacetlo = false;
+								}
 							}			
 						}					
 					}
@@ -89,7 +103,12 @@ public class Restaurace {
 		}
 			catch (Exception e){ 
 				System.out.println ("Chyba na vstupu souboru: " + cestaText);
+				nacetlo = false;
 			}
+		}
+	
+		public boolean isNacetly() {
+			return nacetlo;
 		}
 	
 		@SuppressWarnings("deprecation")
