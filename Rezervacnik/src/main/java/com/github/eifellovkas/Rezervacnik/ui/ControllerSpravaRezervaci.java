@@ -1,4 +1,5 @@
 /**
+<<<<<<< HEAD
 
  * 
  */
@@ -18,5 +19,4 @@ public class ControllerSpravaRezervaci {
 		
 		
 	}
-	
-}
+	}	

@@ -19,7 +19,7 @@ public class Stul {
 	}
 	
 	public boolean isNekuracky() {
-		return false;
+		return nekuracky;
 	}
 	
 	public void setNekuracky(boolean nekuracky) {
