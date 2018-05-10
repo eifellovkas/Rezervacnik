@@ -67,7 +67,7 @@ public class ControllerUvodniMenu extends GridPane{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/ui/spravaRezervaci.fxml"));    	
 			Parent root = loader.load();
-			ControllerStulNovy controller = new ControllerRezPokus(rez, dataRezervace.get(index));
+			ControllerSpravaRezervaci controller = new ControllerSpravaRezervaci(rez, dataRezervace.get(index));
 			controller = loader.getController(); 	
 			Stage spravaRezervace = new Stage();
 			zamkniVyber();
@@ -111,7 +111,7 @@ public class ControllerUvodniMenu extends GridPane{
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("/ui/spravaStolu.fxml"));    	
     	Parent root = loader.load();
-    	ControllerStulNovy controller = new ControllerStulNovy();
+    	ControllerSpravaStolu controller = new ControllerSpravaStolu();
     	controller = loader.getController(); 	
     	Stage spravaStolu = new Stage();
     	zamkniVyber();
@@ -132,7 +132,7 @@ public class ControllerUvodniMenu extends GridPane{
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("/ui/novaRezervace.fxml"));    	
     	Parent root = loader.load();
-    	ControllerStulNovy controller = new ControllerStulNovy();
+    	ControllerRezervaceNova controller = new ControllerRezervaceNova();
     	controller = loader.getController(); 	
     	Stage novaRezervace = new Stage();
     	zamkniVyber();
