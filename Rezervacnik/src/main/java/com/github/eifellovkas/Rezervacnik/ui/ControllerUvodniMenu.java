@@ -62,11 +62,12 @@ public class ControllerUvodniMenu extends GridPane{
 		String vyber = rezervaceSeznam.getSelectionModel().getSelectedItem();
 		int index = rezervaceSeznam.getSelectionModel().getSelectedIndex();
 		if (vyber!=null && restaurace.obsahujeRezervaci(dataRezervace.get(index))) {
-			Rezervace rez = restaurace.getRezervace(vyber);
+		//	Rezervace rez = restaurace.getRezervace(vyber);
+			Rezervace rez = restaurace.getRezervace(dataRezervace.get(index));
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/ui/spravaRezervaci.fxml"));    	
 			Parent root = loader.load();
-			ControllerStulNovy controller = new ControllerRezPokus(rez);
+			ControllerStulNovy controller = new ControllerRezPokus(rez, dataRezervace.get(index));
 			controller = loader.getController(); 	
 			Stage spravaRezervace = new Stage();
 			zamkniVyber();

@@ -146,10 +146,12 @@ public class Restaurace {
 	
 		public void pridejStul(String nazev, Stul stul) {
 			seznamStolu.put(nazev, stul);
+			pocetStolu = pocetStolu + 1;
 		}
 		
 		public void odeberStul(String nazev, Stul stul) {
 			seznamStolu.remove(nazev, stul);
+			pocetStolu = pocetStolu - 1;
 		}
 		
 		public Stul getStul(String nazev) {
