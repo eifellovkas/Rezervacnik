@@ -14,8 +14,7 @@ public class ControllerStulNovy extends GridPane{
 	@FXML private Button zalozit;
 	@FXML private CheckBox kuracky;
 	
-	
-	public void inicializuj(Stul stul) {
+	public void inicializuj(/**Stul stul**/) {
 		pocetmist.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
 }
 }
