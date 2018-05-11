@@ -11,28 +11,50 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+/*******************************************************************************
+ * Třída Restaurace slouží ke správě restaurace
+ *
+ * @author     Martin Havlík, havlikmar
+ * @version    LS 2017/2018 (upraveno 11.5.2018)
+ */
 public class Restaurace {
 	private int pocetStolu = 0;
 	private HashMap<String,Stul> seznamStolu;
 	private HashMap<String, Rezervace> seznamRezervaci;
-	private boolean nacetlo = true; 
+	private boolean nacetlo = true;
+	private BufferedReader vstup; 
 
+	/**
+     * Konstruktor pro vytvoření restaurace.
+     * 
+     */
 	public Restaurace() {
 		seznamStolu = new HashMap<String, Stul>();
 		seznamRezervaci = new HashMap<String, Rezervace>();		
 	}
 	
+	/**
+     * Getter pro získání seznamu rezervací
+     * 
+     * @return   vrací seznam rezervací
+     */
 	public HashMap<String, Rezervace> getSeznamRezervaci(){
 		return seznamRezervaci;
 	}
 	
+	/**
+     * Metoda pro načítání stupních dat ze souboru
+     * 
+     * @param   cestaText   cesta k souboru
+     * @param   typVstupu   rozlišení o jaký typ souboru se jedná
+     */
 	@SuppressWarnings("deprecation")
 	public void nacti(String cestaText, int typVstupu) {
 		try {	
 			nacetlo = true;
 			URL cesta = this.getClass().getResource(cestaText);
 			File soubor = new File(cesta.getFile());
-			BufferedReader vstup = new BufferedReader(new FileReader(soubor));
+			vstup = new BufferedReader(new FileReader(soubor));
 			String radek = null;
 			
 			switch(typVstupu){
@@ -107,10 +129,22 @@ public class Restaurace {
 			}
 		}
 	
+		/**
+	     * Getter pro získání atributo, zda se celý soubor načetl. 
+	     * Slouží k testování aplikaci a k ověření že se celý soubor načetl
+	     * 
+	     * @return   vrací zda se souor načetl
+	     */
 		public boolean isNacetly() {
 			return nacetlo;
 		}
 	
+		/**
+	     * Metoda pro ukládání dat do souboru
+	     * 
+	     * @param   cestaText   cesta k souboru
+	     * @param   typVstupu   rozlišení o jaký typ souboru se jedná
+	     */
 		@SuppressWarnings("deprecation")
 		public void uloz(String cestaText, int typVystupu) {
 			try {	
@@ -155,44 +189,102 @@ public class Restaurace {
 			}
 		}
 		
+		/**
+	     * Getter pro získání počtu stolů
+	     * 
+	     * @return   vrací počet stolů
+	     */
 		public int getPocetStolu() {
 			return pocetStolu;
 		}
 		
+		/**
+	     * Setter pro nastavení počtu stolů
+	     * 
+	     * @param   pocetStolu   pocet stolů
+	     */
 		public void setPocetStolu(int pocetStolu) {
 			this.pocetStolu = pocetStolu;
 		}
 	
+		/**
+	     * Metoda pro přidání stolu
+	     * 
+	     * @param   nazev   název stolu
+	     * @param   stul   	stůl co chceme přidat
+	     */
 		public void pridejStul(String nazev, Stul stul) {
 			seznamStolu.put(nazev, stul);
 			pocetStolu = pocetStolu + 1;
 		}
 		
+		/**
+	     * Metoda pro odebrání stolu
+	     * 
+	     * @param   nazev   název stolu
+	     * @param   stul   	stůl, který chceme odstranit
+	     */
 		public void odeberStul(String nazev, Stul stul) {
 			seznamStolu.remove(nazev, stul);
 			pocetStolu = pocetStolu - 1;
 		}
 		
+		/**
+	     * Getter pro získání stolu
+	     * 
+	     * @param   	nazev   název stolu
+	     * @return   	vrací daný stůl
+	     */
 		public Stul getStul(String nazev) {
 			return seznamStolu.get(nazev);
 		}
 		
+		/**
+	     * Metoda pro zjištění zda restaurace obsahuje daný stůl
+	     * 
+	     * @param   	nazev   název rezervace
+	     * @return  	vrací zda obsahuje rezervaci
+	     */
 		public boolean obsahujeStul(String nazev) {
 			return seznamStolu.containsKey(nazev);
 		}
 		
+		/**
+	     * Metoda pro přidání rezervace
+	     * 
+	     * @param   nazev   	název rezervace
+	     * @param   rezervace   rezervace, kterou chceme přidat
+	     */
 		public void pridejRezervaci(String nazev, Rezervace rezervace) {
 			seznamRezervaci.put(nazev, rezervace);
 		}
 		
+		/**
+	     * Metoda pro odebrání rezervace
+	     * 
+	     * @param   nazev   		název rezervace
+	     * @param   rezervace   	rezervace, kterou chceme odstranit
+	     */
 		public void odeberRezervaci(String nazev, Rezervace rezervace) {
 			seznamRezervaci.remove(nazev, rezervace);
 		}
 		
+		/**
+	     * Getter pro získání dané rezervaec
+	     * 
+	     * @param   nazev	název rezervace
+	     * @return  vrací danou rezervaci
+	     */
 		public Rezervace getRezervace(String nazev) {
 			return seznamRezervaci.get(nazev);
 		}
 		
+		/**
+	     * Metoda pro zjištění zda restaurace obsahuje rezervaci
+	     * 
+	     * @param   nazev	název rezervace
+	     * @return  vrací zda obsahuje rezervaci
+	     */
 		public boolean obsahujeRezervaci(String nazev) {
 			return seznamRezervaci.containsKey(nazev);
 		}

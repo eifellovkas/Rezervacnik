@@ -7,124 +7,193 @@ import org.junit.Test;
 
 import com.github.eifellovkas.Rezervacnik.logika.Restaurace;
 
-import junit.framework.TestCase;
-
+/*******************************************************************************
+ * Testovací třída NacitaniTest slouží ke komplexnímu otestování
+ * načítání vstupních dat
+ *
+ * @author     Martin Havlík, havlikmar
+ * @version    LS 2017/2018 (upraveno 11.5.2018)
+ */
 public class NacitaniTest {
 	private Restaurace restaurace;
 	
+	/**
+     * Metoda pro vytvoření podkladů pro testování
+     *     
+     */
     @Before
     public void setUp() {
         restaurace  = new Restaurace();
     }
     
+    /**
+     * Metoda pro testování zda soubor existuje.
+     * Chybně zadaný název. Nacitame stul. Zdroj seznam stolů
+     *     
+     */
     @Test
 	public void existujeSoubor1() {
-    	// chybně zadaný název. Nacitame stul. Zdroj seznam stolů
 		restaurace.nacti("/logika/testVystu.txt",1);
 		assertEquals(false, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda soubor existuje.
+     * Správný název. Nacitame stul. Zdroj seznam stolů
+     *     
+     */
     @Test
 	public void existujeSoubor2() {
-		// správný název. Nacitame stul. Zdroj seznam stolů
 		restaurace.nacti("/logika/testVystup.txt",1);
 		assertEquals(true, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda soubor existuje.
+     * Chybně zadaný název Nacitame rezervace. Zdroj seznam stolů
+     *     
+     */
     @Test
 	public void existujeSoubor3() {
-		// chybně zadaný název Nacitame rezervace. Zdroj seznam stolů
     	restaurace.nacti("/logika/testVystup.txt",1);
     	restaurace.nacti("/logika/testVystu.txt",2);
 		assertEquals(false, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda soubor existuje.
+     * Správný název. Nacitame rezervace. Zdroj seznam stolů
+     *     
+     */
     @Test
 	public void existujeSoubor4() {
-		// správný název. Nacitame rezervace. Zdroj seznam stolů
     	restaurace.nacti("/logika/testVystup.txt",1);
     	restaurace.nacti("/logika/testVystup.txt",2);
 		assertEquals(false, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda soubor existuje.
+     * Chybně zadaný název. Nacitame stul. Zdroj seznam rezervaci
+     *     
+     */
     @Test
 	public void existujeSoubor5() {
-    	// chybně zadaný název. Nacitame stul. Zdroj seznam rezervaci
 		restaurace.nacti("/logika/testVystu.txt",1);
 		assertEquals(false, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda soubor existuje.
+     * Správný název. Nacitame stul. Zdroj seznam rezervaci
+     *     
+     */
     @Test
 	public void existujeSoubor6() {
-		// správný název. Nacitame stul. Zdroj seznam rezervaci
 		restaurace.nacti("/logika/testVystup1.txt",1);
 		assertEquals(false, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda soubor existuje.
+     * Chybně zadaný název. Nacitame rezervace. Zdroj seznam rezervaci
+     *     
+     */
     @Test
 	public void existujeSoubor7() {
-		// chybně zadaný název. Nacitame rezervace. Zdroj seznam rezervaci
     	restaurace.nacti("/logika/testVystup.txt",1);
     	restaurace.nacti("/logika/testVystu.txt",2);
 		assertEquals(false, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda soubor existuje.
+     * Správný název. Nacitame rezervace. Zdroj seznam rezervaci
+     *     
+     */
     @Test
 	public void existujeSoubor8() {
-		// správný název. Nacitame rezervace. Zdroj seznam rezervaci
 		restaurace.nacti("/logika/testVystup.txt",1);
 		restaurace.nacti("/logika/testVystup1.txt",2);
 		assertEquals(true, restaurace.isNacetly());
 	}
     
+    /**
+     * Metoda pro testování zda se soubor načetl správně.
+     * Stoly se načetly
+     *     
+     */
     @Test
 	public void nacetloSpravne1() {
-    	//stoly se načetly
 		restaurace.nacti("/logika/testVystup.txt",1);
 		assertEquals(true, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda se soubor načetl správně.
+     * Ve stolech je chyba
+     *     
+     */
     @Test
 	public void nacetloSpravne2() {
-		//ve stolech je chyba
 		restaurace.nacti("/logika/testVystup2.txt",1);
 		assertEquals(false, restaurace.isNacetly());
     }	
 	
+    /**
+     * Metoda pro testování zda se soubor načetl správně.
+     * Rezervace se načetly
+     *     
+     */
     @Test
 	public void nacetloSpravne3() {
-    	//rezervace se načetly
 		restaurace.nacti("/logika/testVystup.txt",1);
 		restaurace.nacti("/logika/testVystup1.txt",2);
 		assertEquals(true, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda se soubor načetl správně.
+     * V rezervacich je chyba
+     *     
+     */
     @Test
 	public void nacetloSpravne4() {
-		//v rezervacich je chyba
     	restaurace.nacti("/logika/testVystup.txt",1);
 		restaurace.nacti("/logika/testVystup3.txt",2);
 		assertEquals(false, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda se soubor načetl správně.
+     * Stul chybí
+     *     
+     */
     @Test
 	public void nacetloSpravne5() {
-		//stul chybí
 		restaurace.nacti("/logika/testVystup4.txt",1);
 		restaurace.nacti("/logika/testVystup1.txt",2);
 		assertEquals(false, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda se soubor načetl správně.
+     * Prazdny stoly
+     *     
+     */
     @Test
 	public void nacetloSpravne6() {
-		//prazdny stoly
 		restaurace.nacti("/logika/testVystup5.txt",1);
 		assertEquals(true, restaurace.isNacetly());
     }
     
+    /**
+     * Metoda pro testování zda se soubor načetl správně.
+     * Prazdne rezervace
+     *     
+     */
     @Test
 	public void nacetloSpravne7() {
-		//prazdne rezervace
 		restaurace.nacti("/logika/testVystup5.txt",2);
 		assertEquals(true, restaurace.isNacetly());
     }

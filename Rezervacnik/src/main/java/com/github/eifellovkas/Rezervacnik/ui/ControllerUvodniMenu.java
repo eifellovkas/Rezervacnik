@@ -28,9 +28,14 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/*******************************************************************************
+ * Třída ControllerUvodniMenu slouží jako controller pro úvodní menu aplikace.
+ *
+ * @author     Martin Havlík, havlikmar
+ * @version    LS 2017/2018 (upraveno 11.5.2018)
+ */
 public class ControllerUvodniMenu extends GridPane{
 	private Restaurace restaurace;
-	
 	@FXML private ComboBox<Integer>  	seznamHodin;
 	@FXML private DatePicker		  	datumPanel;
 	private ObservableList<String>		seznamRezervaci;
@@ -38,7 +43,11 @@ public class ControllerUvodniMenu extends GridPane{
 	@FXML private ListView<String>  	rezervaceSeznam;
 	@FXML private MenuBar  				menu;
 	
-	
+	/**
+     * Metoda pro iniciaci controlleru.
+     * 
+     * @param restaurace restaurace pro kterou je aplikace postavena
+     */
 	public void inicializuj(Restaurace restaurace) {
 		this.restaurace = restaurace;
 		restaurace.nacti("/logika/stoly.txt",1);
@@ -46,18 +55,47 @@ public class ControllerUvodniMenu extends GridPane{
 		seznamHodin.getItems().addAll(11,12,13,14,15,16,17,18,19,20,21,22,23); 
 		List<String> list = new ArrayList<String>();
 		seznamRezervaci = FXCollections.observableList(list);
+		if(restaurace.isNacetly()) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Načtení souboru");
+			alert.setHeaderText(null);
+			alert.setContentText("Všechny záznamy se načetly");
+			alert.showAndWait();
+		}
+		else
+		{
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("chyba při načítání");
+			alert.setHeaderText(null);
+			alert.setContentText("Alespoň jeden záznam se nepovedlo načíst. Aplikace stále bude fungovat, ale může mít neúplné údaje");
+			alert.showAndWait();
+		}
 	}
 	
+	/**
+     * Metoda pro odemknutí prvků GUI.
+     * 
+     */
 	public void odemkniVyber() {
 		menu.setDisable(false);
 		rezervaceSeznam.setDisable(false);
 	}
 	
+	/**
+     * Metoda pro zamknutí prvků GUI.
+     * 
+     */
 	public void zamkniVyber() {
 		menu.setDisable(true);
 		rezervaceSeznam.setDisable(true);
 	}
 	
+	/**
+     * Metoda pro kliknutí zobrazení okna správa rezervaci
+     * 
+     * @param   arg0   kliknutí myši na rezervaci
+     * 
+     */
 	@FXML public void klikRezervace(MouseEvent arg0) throws Exception {
 		String vyber = rezervaceSeznam.getSelectionModel().getSelectedItem();
 		int index = rezervaceSeznam.getSelectionModel().getSelectedIndex();
@@ -75,18 +113,20 @@ public class ControllerUvodniMenu extends GridPane{
 			spravaRezervace.setScene(new Scene(root));
 			spravaRezervace.show();
 			spravaRezervace.setTitle("Uprava Rezervace");	
-			
 			spravaRezervace.setOnCloseRequest(new EventHandler<WindowEvent>(){
-
 				public void handle(WindowEvent event) {
 					odemkniVyber();
 				}
-	    		
 	    	});
 		}		
 	}
 	
-	
+	/**
+     * Metoda pro otevření okna nový stůl
+     * 
+     * @param   event   kliknutí na daný prvek
+     * 
+     */
 	@FXML public void klikNovyStul(ActionEvent event) throws Exception{
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("/ui/novyStul.fxml"));    	
@@ -99,16 +139,19 @@ public class ControllerUvodniMenu extends GridPane{
     	novyStul.setScene(new Scene(root));
     	novyStul.show();
     	novyStul.setTitle("Nový stůl");
-    	
     	novyStul.setOnCloseRequest(new EventHandler<WindowEvent>(){
-
 			public void handle(WindowEvent event) {
 				odemkniVyber();
 			}
-    		
     	});
-		}
+	}
 	
+	/**
+     * Metoda pro otevření okna spravovat stůl
+     * 
+     * @param   event   kliknutí na daný prvek
+     * 
+     */
 	@FXML public void klikSpravovatStul(ActionEvent event) throws Exception{
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("/ui/spravaStolu.fxml"));    	
@@ -120,16 +163,19 @@ public class ControllerUvodniMenu extends GridPane{
     	spravaStolu.setScene(new Scene(root));
     	spravaStolu.show();
     	spravaStolu.setTitle("Správa stolů");
-    	
     	spravaStolu.setOnCloseRequest(new EventHandler<WindowEvent>(){
-
-			public void handle(WindowEvent event) {
+    		public void handle(WindowEvent event) {
 				odemkniVyber();
-			}
-    		
+			}	
     	});
-		}
+	}
 	
+	/**
+     * Metoda pro otevření okna nová rezervace
+     * 
+     * @param   event   kliknutí na daný prvek
+     * 
+     */
 	@FXML public void klikNovaRezervace(ActionEvent event) throws Exception{
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("/ui/novaRezervace.fxml"));    	
@@ -141,16 +187,19 @@ public class ControllerUvodniMenu extends GridPane{
     	novaRezervace.setScene(new Scene(root));
     	novaRezervace.show();
     	novaRezervace.setTitle("Nová rezervace");
-    	
     	novaRezervace.setOnCloseRequest(new EventHandler<WindowEvent>(){
-
 			public void handle(WindowEvent event) {
 				odemkniVyber();
 			}
-    		
     	});
-		}
+	}
 	
+	/**
+     * Metoda pro uložení hry
+     * 
+     * @param   event   kliknutí na daný prvek
+     * 
+     */
 	@FXML public void klikUlozit(ActionEvent event){
 		restaurace.uloz("src/main/resources/logika/stoly.txt",1);
 		restaurace.uloz("src/main/resources/logika/rezervace.txt",2);
@@ -161,6 +210,12 @@ public class ControllerUvodniMenu extends GridPane{
 		alert.showAndWait();
 		}
 	
+	/**
+     * Metoda pro vyhledání rezervací podle zadaných parametrů
+     * 
+     * @param   arg0   kliknutí na tlačítko vyhledat
+     * 
+     */
 	@FXML public void vyhledat(ActionEvent arg0) {
 		LocalDate date = datumPanel.getValue();
 		Integer hodina = seznamHodin.getValue();
