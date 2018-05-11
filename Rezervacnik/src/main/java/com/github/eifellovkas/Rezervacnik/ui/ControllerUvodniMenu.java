@@ -176,7 +176,8 @@ public class ControllerUvodniMenu extends GridPane{
 				if (hodina.equals(rezervace.getHodina()) && a2.equals(a1)) {
 					String[] slovo = nazev.split("-");
 					String stul = slovo[0];
-					String jmeno = slovo[3];
+					String jmeno = restaurace.getRezervace(nazev).getJmeno();
+				//	String jmeno = slovo[3];
 					String zobraz = stul + jmeno;
 					
 					dataRezervace.add(nazev);

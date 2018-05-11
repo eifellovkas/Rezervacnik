@@ -86,7 +86,7 @@ public class Restaurace {
 							if (obsahujeStul(stul)) {
 								Stul stulInst = getStul(stul);
 								Rezervace rezervace = new Rezervace(date,hodina,jmeno,stulInst);
-								String popis = stul + " - " + datum.format(date) + " - " + hodina + " - " + jmeno;
+								String popis = stul + " - " + datum.format(date) + " - " + hodina /** + " - " + jmeno **/;
 								pridejRezervaci(popis,rezervace);
 							}
 							else {
