@@ -1,6 +1,7 @@
 package com.github.eifellovkas.Rezervacnik;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,10 +34,14 @@ public class PraceSeStolyTest {
      */
     @Test
 	public void stolyTest() {
-		assertEquals(false, restaurace.obsahujeStul("a"));
+    	assertTrue(restaurace.getSeznamStolu().isEmpty());
+    	assertFalse(restaurace.obsahujeStul("a"));
 		Stul stul = new Stul(5,true);
 		restaurace.pridejStul("a", stul);
-		assertEquals(true, restaurace.obsahujeStul("a"));
-		assertEquals(true, restaurace.obsahujeStul("b"));
+		assertFalse(restaurace.getSeznamStolu().isEmpty());
+		assertTrue(restaurace.obsahujeStul("a"));
+		assertFalse(restaurace.obsahujeStul("b"));
+		restaurace.odeberStul("a", stul);
+		assertTrue(restaurace.getSeznamStolu().isEmpty());
     }
 }

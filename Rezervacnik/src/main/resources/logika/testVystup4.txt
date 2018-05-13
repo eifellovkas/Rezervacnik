@@ -1,1 +1,0 @@
-Stul 7;6;false

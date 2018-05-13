@@ -43,6 +43,16 @@ public class Restaurace {
 	}
 	
 	/**
+     * Getter pro získání seznamu stolu
+     * Slouží pro testy
+     * 
+     * @return   vrací seznam stolu
+     */
+	public HashMap<String, Stul> getSeznamStolu(){
+		return seznamStolu;
+	}
+	
+	/**
      * Metoda pro načítání stupních dat ze souboru
      * 
      * @param   cestaText   cesta k souboru

@@ -51,11 +51,13 @@ public class ControllerUvodniMenu extends GridPane{
 	public void inicializuj(Restaurace restaurace) {
 		this.restaurace = restaurace;
 		restaurace.nacti("/logika/stoly.txt",1);
+		boolean nacetlo1 = restaurace.isNacetly();
 		restaurace.nacti("/logika/rezervace.txt",2);
+		boolean nacetlo2 = restaurace.isNacetly();
 		seznamHodin.getItems().addAll(11,12,13,14,15,16,17,18,19,20,21,22,23); 
 		List<String> list = new ArrayList<String>();
 		seznamRezervaci = FXCollections.observableList(list);
-		if(restaurace.isNacetly()) {
+		if(nacetlo1 && nacetlo2) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Načtení souboru");
 			alert.setHeaderText(null);
