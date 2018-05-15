@@ -135,7 +135,7 @@ public class ControllerUvodniMenu extends GridPane{
     	Parent root = loader.load();
     	ControllerStulNovy controller = new ControllerStulNovy();
     	controller = loader.getController(); 
-    	controller.inicializuj();
+    	controller.inicializace(restaurace);
     	Stage novyStul = new Stage();
     	zamkniVyber();
     	novyStul.setScene(new Scene(root));
@@ -159,7 +159,8 @@ public class ControllerUvodniMenu extends GridPane{
     	loader.setLocation(getClass().getResource("/ui/spravaStolu.fxml"));    	
     	Parent root = loader.load();
     	ControllerSpravaStolu controller = new ControllerSpravaStolu();
-    	controller = loader.getController(); 	
+    	controller = loader.getController(); 
+    	controller.inicializace(restaurace);
     	Stage spravaStolu = new Stage();
     	zamkniVyber();
     	spravaStolu.setScene(new Scene(root));

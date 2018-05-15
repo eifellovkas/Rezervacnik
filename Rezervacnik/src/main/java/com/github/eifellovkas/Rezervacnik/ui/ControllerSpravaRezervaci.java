@@ -48,6 +48,4 @@ public class ControllerSpravaRezervaci {
 		jmenoVypis.appendText(String.valueOf(restaurace.getRezervace(nazev).getJmeno()));
 		
 		}
-	public 
-	
 }
