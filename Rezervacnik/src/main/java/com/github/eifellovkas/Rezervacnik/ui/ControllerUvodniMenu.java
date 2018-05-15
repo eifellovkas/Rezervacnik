@@ -184,8 +184,8 @@ public class ControllerUvodniMenu extends GridPane{
     	loader.setLocation(getClass().getResource("/ui/novaRezervace.fxml"));    	
     	Parent root = loader.load();
     	ControllerRezervaceNova controller = new ControllerRezervaceNova();
-    	controller.inicializace(restaurace);
     	controller = loader.getController(); 	
+    	controller.inicializace(restaurace);
     	Stage novaRezervace = new Stage();
     	zamkniVyber();
     	novaRezervace.setScene(new Scene(root));
