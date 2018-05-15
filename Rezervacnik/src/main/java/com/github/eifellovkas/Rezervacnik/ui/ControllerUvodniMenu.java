@@ -109,7 +109,7 @@ public class ControllerUvodniMenu extends GridPane{
 			Parent root = loader.load();
 			ControllerSpravaRezervaci controller = new ControllerSpravaRezervaci(/**rez, dataRezervace.get(index)**/);
 			controller = loader.getController();
-			controller.inicializace(rez, dataRezervace.get(index));
+			controller.inicializace(rez, dataRezervace.get(index),restaurace);
 			Stage spravaRezervace = new Stage();
 			zamkniVyber();
 			spravaRezervace.setScene(new Scene(root));
@@ -183,6 +183,7 @@ public class ControllerUvodniMenu extends GridPane{
     	loader.setLocation(getClass().getResource("/ui/novaRezervace.fxml"));    	
     	Parent root = loader.load();
     	ControllerRezervaceNova controller = new ControllerRezervaceNova();
+    	controller.inicializace(restaurace);
     	controller = loader.getController(); 	
     	Stage novaRezervace = new Stage();
     	zamkniVyber();
