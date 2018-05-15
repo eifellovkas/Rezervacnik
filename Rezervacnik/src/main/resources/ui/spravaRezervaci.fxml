@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.eifellovkas.Rezervacnik.ui.ControllerSpravaRezervaci">
   <columnConstraints>
     <ColumnConstraints />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1080.0" minWidth="10.0" prefWidth="1080.0" />
@@ -48,7 +48,7 @@
                   <VBox alignment="CENTER" prefWidth="300.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="21.0" prefWidth="400.0" text="Datum" />
-                        <TextArea prefHeight="50.0" prefWidth="200.0" />
+                        <TextArea fx:id="datumVypis" editable="false" prefHeight="50.0" prefWidth="200.0" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -57,7 +57,7 @@
                   <VBox alignment="CENTER" prefWidth="100.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="21.0" prefWidth="205.0" text="Počet míst" />
-                        <TextArea prefHeight="50.0" prefWidth="200.0" />
+                        <TextArea fx:id="pocetMistVypis" editable="false" prefHeight="50.0" prefWidth="200.0" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -65,8 +65,8 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="54.0" prefWidth="100.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="205.0" text="Kuřácký" />
-                        <TextArea prefHeight="50.0" prefWidth="200.0">
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="205.0" text="Nekuřácký" />
+                        <TextArea fx:id="nekurackyVypis" editable="false" prefHeight="50.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -79,7 +79,7 @@
                   <VBox alignment="CENTER" prefWidth="150.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="21.0" prefWidth="150.0" text="Stůl" />
-                        <TextArea prefHeight="50.0" prefWidth="150.0" />
+                        <TextArea fx:id="stulVypis" editable="false" prefHeight="50.0" prefWidth="150.0" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -88,7 +88,11 @@
                   <VBox alignment="CENTER" prefWidth="150.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="21.0" prefWidth="205.0" text="Jméno" />
-                        <TextField prefHeight="50.0" prefWidth="150.0" />
+                        <TextArea fx:id="jmenoVypis" editable="false" prefHeight="56.0" prefWidth="150.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </TextArea>
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -107,29 +111,14 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="133.0" prefWidth="595.0">
                <children>
-                  <VBox alignment="CENTER" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="113.0" prefWidth="179.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Rok" />
-                        <ComboBox prefWidth="100.0" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Datum" />
+                        <DatePicker />
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
-                  </VBox>
-                  <VBox alignment="CENTER" prefWidth="100.0">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                     <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Mesic" />
-                        <ComboBox prefWidth="100.0" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefWidth="100.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="212.0" text="Den" />
-                        <ComboBox prefWidth="150.0" />
-                     </children>
                   </VBox>
                   <VBox alignment="CENTER" prefWidth="100.0">
                      <children>
