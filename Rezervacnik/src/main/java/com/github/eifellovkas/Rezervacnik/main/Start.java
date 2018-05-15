@@ -14,13 +14,29 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/*******************************************************************************
+ * Třída Start slouží ke spuštění aplikace
+ *
+ * @author     Martin Havlík, havlikmar
+ * @version    LS 2017/2018 (upraveno 11.5.2018)
+ */
 public class Start extends Application{
 	private Restaurace restaurace = new Restaurace();
 	
+	/**
+     * Metoda pro spuštění aplikace.
+     * 
+     * @param args Parametry příkazového řádku
+     */
 	public static void main(String[] args) {
             launch(args);
     }
 	
+	/**
+     * Metoda pro spuštění grafické verze haplikace. Spouští hlavní okno.
+     * 
+     * @param primaryStage hlediště hry
+     */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
@@ -34,15 +50,18 @@ public class Start extends Application{
     	primaryStage.setScene(new Scene(root));
     	primaryStage.show();
     	primaryStage.setTitle("Úvodní menu aplikace");
-    	primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
-
+    	primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent event) {
 				Platform.exit();
 			}
-    		
     	});
 	}
 	
+	/**
+     * Metoda spuštěná po ukončení hlavního okna. Slouží
+     * k uložení aplikace.
+     * 
+     */
 	@Override
 	public void stop() throws Exception {
 		 restaurace.uloz("src/main/resources/logika/stoly.txt",1);
