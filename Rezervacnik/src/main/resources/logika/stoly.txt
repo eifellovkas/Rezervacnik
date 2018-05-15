@@ -1,3 +1,5 @@
+Stul 2;1;false
+Stul 1;2;false
 Stul 7;6;false
 Stul 6;6;false
 Stul 5;6;false

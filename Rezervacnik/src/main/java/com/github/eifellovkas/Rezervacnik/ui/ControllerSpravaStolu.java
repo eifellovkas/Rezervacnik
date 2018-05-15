@@ -6,20 +6,20 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import com.github.eifellovkas.Rezervacnik.logika.Stul;
+import com.github.eifellovkas.Rezervacnik.logika.Restaurace;
 
 public class ControllerSpravaStolu extends GridPane{
-	private Stul stul;
+	
 	
 	@FXML private ListView<String> 	seznamstolu;
 	@FXML private Button 			upravit;
 	@FXML private Button 			odstranit;
 	@FXML private ComboBox<Integer> pocetmist;
-	@FXML private CheckBox 			kuracky;
+	@FXML private CheckBox 			nekuracky;
 	
 	
 	
-public void inicializuj(Stul stul) {
+public void inicializace(Restaurace restaurace) {
 
 }
 }
