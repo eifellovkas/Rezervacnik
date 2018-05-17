@@ -50,9 +50,9 @@ public class ControllerUvodniMenu extends GridPane {
      */
 	public void inicializuj(Restaurace restaurace) {
 		this.restaurace = restaurace;
-		restaurace.nacti("/logika/stoly.txt",1);
+		restaurace.nacti("/logika/stoly.txt",1,false);
 		boolean nacetlo1 = restaurace.isNacetly();
-		restaurace.nacti("/logika/rezervace.txt",2);
+		restaurace.nacti("/logika/rezervace.txt",2,false);
 		boolean nacetlo2 = restaurace.isNacetly();
 		seznamHodin.getItems().addAll(11,12,13,14,15,16,17,18,19,20,21,22,23); 
 		List<String> list = new ArrayList<String>();
@@ -204,8 +204,8 @@ public class ControllerUvodniMenu extends GridPane {
      * 
      */
 	@FXML public void klikUlozit(ActionEvent event) {
-		restaurace.uloz("src/main/resources/logika/stoly.txt",1);
-		restaurace.uloz("src/main/resources/logika/rezervace.txt",2);
+		restaurace.uloz("src/main/resources/logika/stoly.txt",1,false);
+		restaurace.uloz("src/main/resources/logika/rezervace.txt",2,false);
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Uložení");
 		alert.setHeaderText(null);

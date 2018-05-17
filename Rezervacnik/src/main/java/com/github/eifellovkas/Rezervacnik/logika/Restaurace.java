@@ -5,7 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.net.URL;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,8 +22,9 @@ public class Restaurace {
 	private HashMap<String,Stul> seznamStolu;
 	private HashMap<String, Rezervace> seznamRezervaci;
 	private boolean nacetlo = true;
-	private BufferedReader vstup; 
-
+	private BufferedReader vstup;
+	BufferedWriter vystup;
+	
 	/**
      * Konstruktor pro vytvoření restaurace.
      * 
@@ -60,84 +61,106 @@ public class Restaurace {
      * @param   typVstupu   rozlišení o jaký typ souboru se jedná
      */
 	@SuppressWarnings("deprecation")
-	public void nacti(String cestaText, int typVstupu) {
+	public void nacti(String cestaText, int typVstupu, boolean jeArchiv) {
 		try {	
 			nacetlo = true;
-			URL cesta = this.getClass().getResource(cestaText);
-			File soubor = new File(cesta.getFile());
-			vstup = new BufferedReader(new FileReader(soubor));
 			String radek = null;
 			
-			switch(typVstupu) {
-				case 1: while ((radek=vstup.readLine()) != null) {
-					String[] slovo = radek.split(";");
-
-					if (slovo.length != 3) {
-						throw new Exception();
-					}
-						
-					String stul = slovo[0];
-					String pocetMist = slovo[1];
-					boolean nekuracky;
-					
-					if (slovo[2].equals("true")) {
-						nekuracky = true; 
-					} 
-					else {
-						nekuracky = false; 
-					}
-						
-					Stul stulInst = new Stul(Integer.parseInt(pocetMist),nekuracky);
-					pridejStul(stul,stulInst);
+			if (jeArchiv) {
+				String[] odkaz = cestaText.split("/");
+				String adresar = System.getProperty("user.dir");
+				File soubor = new File(adresar, odkaz[2]);
+				
+				if	(!soubor.createNewFile()) {
+					soubor.createNewFile();
 				}
-				break;
-			
-				case 2: while ((radek=vstup.readLine()) != null) {
-					String[] slovo = radek.split(";");
-						
-					if (slovo.length != 6) {
-						throw new Exception();
-					}
-						
-					String stul = slovo[0];
-					int den = Integer.parseInt(slovo[1]);
-					int mesic = Integer.parseInt(slovo[2]);
-					int rok = Integer.parseInt(slovo[3]);
-					int hodina = Integer.parseInt(slovo[4]);
-					String jmeno = slovo[5];
-						
-					DateFormat datum = new SimpleDateFormat("dd.MM.yyyy");
-					Date dnesniDatum = new Date();
-						
-					int dnesniRok = dnesniDatum.getYear()+1900;
-					int dnesniDen = dnesniDatum.getDate();
-					int dnesniMesic = dnesniDatum.getMonth()+1;
-						
-					if ((rok > dnesniRok) || ((rok == dnesniRok) && (mesic == dnesniMesic) && (den >= dnesniDen)) || ((rok == dnesniRok) && (mesic > dnesniMesic))) {
-						Date date = new Date(rok-1900,mesic-1,den);
-							
-						if (obsahujeStul(stul)) {
-							Stul stulInst = getStul(stul);
-							Rezervace rezervace = new Rezervace(date,hodina,jmeno,stulInst);
-							String popis = stul + " - " + datum.format(date) + " - " + hodina /** + " - " + jmeno **/;
-							pridejRezervaci(popis,rezervace);
-						}
-						else {
-							if (!seznamRezervaci.isEmpty()) {
-								System.out.println("Stul na který se váže rezervace nenalezen");
-								nacetlo = false;
-							}
-						}			
-					}					
-				}
-				break;
+				
+				vstup = new BufferedReader(new FileReader(soubor));
 			}
-			vstup.close();
+			else {
+				InputStreamReader stream = new InputStreamReader(getClass().getResourceAsStream(cestaText));
+				vstup = new BufferedReader(stream);	
+			}
+			
+			switch(typVstupu) {
+				case 1: 
+					while ((radek=vstup.readLine()) != null) {
+						String[] slovo = radek.split(";");
+
+						if (slovo.length != 3) {
+							throw new Exception();
+						}
+						
+						String stul = slovo[0];
+						String pocetMist = slovo[1];
+						boolean nekuracky;
+					
+						if (slovo[2].equals("true")) {
+							nekuracky = true; 
+						} 
+						else {
+							nekuracky = false; 
+						}
+						
+						Stul stulInst = new Stul(Integer.parseInt(pocetMist),nekuracky);
+						pridejStul(stul,stulInst);
+					}
+					vstup.close();
+					break;
+			
+				case 2: 
+					while ((radek=vstup.readLine()) != null) {
+						String[] slovo = radek.split(";");
+						
+						if (slovo.length != 6) {
+							throw new Exception();
+						}
+						
+						String stul = slovo[0];
+						int den = Integer.parseInt(slovo[1]);
+						int mesic = Integer.parseInt(slovo[2]);
+						int rok = Integer.parseInt(slovo[3]);
+						int hodina = Integer.parseInt(slovo[4]);
+						String jmeno = slovo[5];
+						
+						DateFormat datum = new SimpleDateFormat("dd.MM.yyyy");
+						Date dnesniDatum = new Date();
+						
+						int dnesniRok = dnesniDatum.getYear()+1900;
+						int dnesniDen = dnesniDatum.getDate();
+						int dnesniMesic = dnesniDatum.getMonth()+1;
+						
+						if ((rok > dnesniRok) || ((rok == dnesniRok) && (mesic == dnesniMesic) && (den >= dnesniDen)) || ((rok == dnesniRok) && (mesic > dnesniMesic))) {
+							Date date = new Date(rok-1900,mesic-1,den);
+							
+							if (obsahujeStul(stul)) {
+								Stul stulInst = getStul(stul);
+								Rezervace rezervace = new Rezervace(date,hodina,jmeno,stulInst);
+								String popis = stul + " - " + datum.format(date) + " - " + hodina /** + " - " + jmeno **/;
+								pridejRezervaci(popis,rezervace);
+							}
+							else {
+								if (!seznamRezervaci.isEmpty()) {
+									System.out.println("Stul na který se váže rezervace nenalezen");
+									nacetlo = false;
+								}
+							}			
+						}					
+					}
+					vstup.close();
+					break;
+			}	
 		}
 		
 		catch (Exception e) { 
 			System.out.println ("Chyba na vstupu souboru: " + cestaText);
 			nacetlo = false;
+			if (typVstupu == 1) {
+				nacti("/logika/stoly.txt",1,true);
+			}
+			else {
+				nacti("/logika/rezervace.txt",2,true);
+			}	
 		}
 	}
 	
@@ -159,12 +182,25 @@ public class Restaurace {
 	 * @param   typVstupu   rozlišení o jaký typ souboru se jedná
 	 */
 	@SuppressWarnings("deprecation")
-	public void uloz(String cestaText, int typVystupu) {
-		try {	
-			BufferedWriter vystup;
+	public void uloz(String cestaText, int typVystupu, boolean jeArchiv) {
+		try {
+			if (jeArchiv) {
+				String[] odkaz = cestaText.split("/");
+				String adresar = System.getProperty("user.dir");
+				File soubor = new File(adresar, odkaz[4]);
+				
+				if	(!soubor.createNewFile()) {
+					soubor.createNewFile();
+				}
+			
+				vystup = new BufferedWriter(new FileWriter(soubor));	
+			}
+			else {
+				vystup = new BufferedWriter(new FileWriter(cestaText));	
+			}
 			
 			switch(typVystupu) {
-				case 1: vystup = new BufferedWriter(new FileWriter(cestaText));	
+				case 1: 
 					for (String stul: seznamStolu.keySet()) {
 						String pocetMist = String.valueOf(getStul(stul).getPocetMist());
 						String nekuracky = String.valueOf(getStul(stul).isNekuracky());
@@ -175,7 +211,7 @@ public class Restaurace {
 					vystup.close();	
 					break;
 				
-				case 2: vystup = new BufferedWriter(new FileWriter(cestaText));	
+				case 2: 
 					for (String rezervace: seznamRezervaci.keySet()) {
 						String stul = null;
 						
@@ -202,6 +238,12 @@ public class Restaurace {
 		
 		catch (Exception e) { 
 			System.out.println ("Chyba na zapisu souboru");
+			if (typVystupu == 1) {
+				nacti("src/main/resources/logika/stoly.txt",1,true);
+			}
+			else {
+				nacti("src/main/resources/logika/rezervace.txt",2,true);
+			}	
 		}
 	}
 		

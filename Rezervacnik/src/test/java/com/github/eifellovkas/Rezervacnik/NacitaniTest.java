@@ -34,7 +34,7 @@ public class NacitaniTest {
      */
     @Test
 	public void existujeSoubor1() {
-		restaurace.nacti("/logika/testVstu.txt",1);
+		restaurace.nacti("/logika/testVstu.txt",1,false);
 		assertFalse(restaurace.isNacetly());
     }
     
@@ -45,7 +45,7 @@ public class NacitaniTest {
      */
     @Test
 	public void existujeSoubor2() {
-		restaurace.nacti("/logika/testVstup.txt",1);
+		restaurace.nacti("/logika/testVstup.txt",1,false);
 		assertTrue(restaurace.isNacetly());
     }
     
@@ -56,8 +56,8 @@ public class NacitaniTest {
      */
     @Test
 	public void existujeSoubor3() {
-    	restaurace.nacti("/logika/testVstup.txt",1);
-    	restaurace.nacti("/logika/testVstu.txt",2);
+    	restaurace.nacti("/logika/testVstup.txt",1,false);
+    	restaurace.nacti("/logika/testVstu.txt",2,false);
     	assertFalse(restaurace.isNacetly());
     }
     
@@ -68,8 +68,8 @@ public class NacitaniTest {
      */
     @Test
 	public void existujeSoubor4() {
-    	restaurace.nacti("/logika/testVstup.txt",1);
-    	restaurace.nacti("/logika/testVstup.txt",2);
+    	restaurace.nacti("/logika/testVstup.txt",1,false);
+    	restaurace.nacti("/logika/testVstup.txt",2,false);
     	assertFalse(restaurace.isNacetly());
     }
     
@@ -80,7 +80,7 @@ public class NacitaniTest {
      */
     @Test
 	public void existujeSoubor5() {
-		restaurace.nacti("/logika/testVstu.txt",1);
+		restaurace.nacti("/logika/testVstu.txt",1,false);
 		assertFalse(restaurace.isNacetly());
     }
     
@@ -91,7 +91,7 @@ public class NacitaniTest {
      */
     @Test
 	public void existujeSoubor6() {
-		restaurace.nacti("/logika/testVstup1.txt",1);
+		restaurace.nacti("/logika/testVstup1.txt",1,false);
 		assertFalse(restaurace.isNacetly());
     }
     
@@ -102,8 +102,8 @@ public class NacitaniTest {
      */
     @Test
 	public void existujeSoubor7() {
-    	restaurace.nacti("/logika/testVstup.txt",1);
-    	restaurace.nacti("/logika/testVstu.txt",2);
+    	restaurace.nacti("/logika/testVstup.txt",1,false);
+    	restaurace.nacti("/logika/testVstu.txt",2,false);
     	assertFalse(restaurace.isNacetly());
     }
     
@@ -114,8 +114,8 @@ public class NacitaniTest {
      */
     @Test
 	public void existujeSoubor8() {
-		restaurace.nacti("/logika/testVstup.txt",1);
-		restaurace.nacti("/logika/testVstup1.txt",2);
+		restaurace.nacti("/logika/testVstup.txt",1,false);
+		restaurace.nacti("/logika/testVstup1.txt",2,false);
 		assertTrue(restaurace.isNacetly());
 	}
     
@@ -126,7 +126,7 @@ public class NacitaniTest {
      */
     @Test
 	public void nacetloSpravne1() {
-		restaurace.nacti("/logika/testVstup.txt",1);
+		restaurace.nacti("/logika/testVstup.txt",1,false);
 		assertTrue(restaurace.isNacetly());
     }
     
@@ -137,7 +137,7 @@ public class NacitaniTest {
      */
     @Test
 	public void nacetloSpravne2() {
-		restaurace.nacti("/logika/testVstup2.txt",1);
+		restaurace.nacti("/logika/testVstup2.txt",1,false);
 		assertFalse(restaurace.isNacetly());
     }	
 	
@@ -148,8 +148,8 @@ public class NacitaniTest {
      */
     @Test
 	public void nacetloSpravne3() {
-		restaurace.nacti("/logika/testVstup.txt",1);
-		restaurace.nacti("/logika/testVstup1.txt",2);
+		restaurace.nacti("/logika/testVstup.txt",1,false);
+		restaurace.nacti("/logika/testVstup1.txt",2,false);
 		assertTrue(restaurace.isNacetly());
     }
     
@@ -160,8 +160,8 @@ public class NacitaniTest {
      */
     @Test
 	public void nacetloSpravne4() {
-    	restaurace.nacti("/logika/testVstup.txt",1);
-		restaurace.nacti("/logika/testVstup3.txt",2);
+    	restaurace.nacti("/logika/testVstup.txt",1,false);
+		restaurace.nacti("/logika/testVstup3.txt",2,false);
 		assertFalse(restaurace.isNacetly());
     }
     
@@ -172,8 +172,8 @@ public class NacitaniTest {
      */
     @Test
 	public void nacetloSpravne5() {
-		restaurace.nacti("/logika/testVstup4.txt",1);
-		restaurace.nacti("/logika/testVstup1.txt",2);
+		restaurace.nacti("/logika/testVstup4.txt",1,false);
+		restaurace.nacti("/logika/testVstup1.txt",2,false);
 		assertFalse(restaurace.isNacetly());
     }
     
@@ -184,7 +184,7 @@ public class NacitaniTest {
      */
     @Test
 	public void nacetloSpravne6() {
-		restaurace.nacti("/logika/testVstup5.txt",1);
+		restaurace.nacti("/logika/testVstup5.txt",1,false);
 		assertTrue(restaurace.isNacetly());
     }
     
@@ -195,7 +195,7 @@ public class NacitaniTest {
      */
     @Test
 	public void nacetloSpravne7() {
-		restaurace.nacti("/logika/testVstup5.txt",2);
+		restaurace.nacti("/logika/testVstup5.txt",2,false);
 		assertTrue(restaurace.isNacetly());
     }
 

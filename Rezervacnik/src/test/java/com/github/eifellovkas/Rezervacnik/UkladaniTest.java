@@ -36,11 +36,11 @@ public class UkladaniTest {
      */
     @Test
 	public void uloziPrazdnySoubor() {
-    	restaurace.uloz("/logika/testVystup1.txt", 1);
-		restaurace.nacti("/logika/testVystup1.txt",1);
+    	restaurace.uloz("/logika/testVystup1.txt", 1,false);
+		restaurace.nacti("/logika/testVystup1.txt",1,false);
 		assertTrue(restaurace.isNacetly());
-		restaurace.uloz("/logika/testVystup1.txt", 2);
-		restaurace.nacti("/logika/testVystup1.txt",2);
+		restaurace.uloz("/logika/testVystup1.txt", 2,false);
+		restaurace.nacti("/logika/testVystup1.txt",2,false);
 		assertTrue(restaurace.isNacetly());
     }
     
@@ -54,14 +54,14 @@ public class UkladaniTest {
     	Date date = new Date(1900,6,1);
     	Stul stul = new Stul(5,true);
 		restaurace.pridejStul("a", stul);
-		restaurace.uloz("/logika/testVystup2.txt", 1);
-		restaurace.nacti("/logika/testVystup2.txt",1);
+		restaurace.uloz("/logika/testVystup2.txt", 1,false);
+		restaurace.nacti("/logika/testVystup2.txt",1,false);
 		assertTrue(restaurace.isNacetly());		
 		assertTrue(restaurace.obsahujeStul("a"));
 		Rezervace rezervace = new Rezervace(date,15,"a",stul);
 		restaurace.pridejRezervaci("a", rezervace);
-		restaurace.uloz("/logika/testVystup3.txt", 2);
-		restaurace.nacti("/logika/testVystup3.txt",2);
+		restaurace.uloz("/logika/testVystup3.txt", 2,false);
+		restaurace.nacti("/logika/testVystup3.txt",2,false);
 		assertTrue(restaurace.isNacetly());
 		assertTrue(restaurace.obsahujeRezervaci("a"));
     }
