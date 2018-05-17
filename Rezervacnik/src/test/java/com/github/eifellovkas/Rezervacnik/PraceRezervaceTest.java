@@ -40,6 +40,7 @@ public class PraceRezervaceTest {
 	public void rezervaceTest() {
     	assertTrue(restaurace.getSeznamRezervaci().isEmpty());
     	assertFalse(restaurace.obsahujeRezervaci("a"));
+    	
     	Date date = new Date(1900,6,1);
     	Stul stul = new Stul(5,true);
 		Rezervace rezervace = new Rezervace(date,15,"a",stul);
@@ -47,6 +48,7 @@ public class PraceRezervaceTest {
 		assertFalse(restaurace.getSeznamRezervaci().isEmpty());
 		assertTrue(restaurace.obsahujeRezervaci("a"));
 		assertFalse(restaurace.obsahujeRezervaci("b"));
+		
 		restaurace.odeberRezervaci("a", rezervace);
 		assertTrue(restaurace.getSeznamRezervaci().isEmpty());
     }

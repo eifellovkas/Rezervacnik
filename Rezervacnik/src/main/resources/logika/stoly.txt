@@ -1,3 +1,2 @@
-Stul 2;5;false
-Stul 1;2;false
-Stul 5;2;false
+Stul 3;2;false
+Stul 2;2;true

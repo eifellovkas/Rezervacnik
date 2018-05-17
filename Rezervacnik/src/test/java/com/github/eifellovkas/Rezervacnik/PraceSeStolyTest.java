@@ -36,11 +36,13 @@ public class PraceSeStolyTest {
 	public void stolyTest() {
     	assertTrue(restaurace.getSeznamStolu().isEmpty());
     	assertFalse(restaurace.obsahujeStul("a"));
+    	
 		Stul stul = new Stul(5,true);
 		restaurace.pridejStul("a", stul);
 		assertFalse(restaurace.getSeznamStolu().isEmpty());
 		assertTrue(restaurace.obsahujeStul("a"));
 		assertFalse(restaurace.obsahujeStul("b"));
+		
 		restaurace.odeberStul("a", stul);
 		assertTrue(restaurace.getSeznamStolu().isEmpty());
     }

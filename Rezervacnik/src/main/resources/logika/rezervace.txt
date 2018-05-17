@@ -1,1 +1,1 @@
-Stul 5;1;2;2019;15;havlik
+Stul 3;1;2;2019;15;havlik

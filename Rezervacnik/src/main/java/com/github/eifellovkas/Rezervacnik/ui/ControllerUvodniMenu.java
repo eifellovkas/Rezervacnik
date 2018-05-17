@@ -34,8 +34,8 @@ import javafx.stage.WindowEvent;
  * @author     Martin Havlík, havlikmar
  * @version    LS 2017/2018 (upraveno 11.5.2018)
  */
-public class ControllerUvodniMenu extends GridPane{
-	private Restaurace restaurace;
+public class ControllerUvodniMenu extends GridPane {
+	private Restaurace 					restaurace;
 	@FXML private ComboBox<Integer>  	seznamHodin;
 	@FXML private DatePicker		  	datumPanel;
 	private ObservableList<String>		seznamRezervaci;
@@ -57,6 +57,7 @@ public class ControllerUvodniMenu extends GridPane{
 		seznamHodin.getItems().addAll(11,12,13,14,15,16,17,18,19,20,21,22,23); 
 		List<String> list = new ArrayList<String>();
 		seznamRezervaci = FXCollections.observableList(list);
+		
 		if(nacetlo1 && nacetlo2) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Načtení souboru");
@@ -64,8 +65,7 @@ public class ControllerUvodniMenu extends GridPane{
 			alert.setContentText("Všechny záznamy se načetly");
 			alert.showAndWait();
 		}
-		else
-		{
+		else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("chyba při načítání");
 			alert.setHeaderText(null);
@@ -102,7 +102,6 @@ public class ControllerUvodniMenu extends GridPane{
 		String vyber = rezervaceSeznam.getSelectionModel().getSelectedItem();
 		int index = rezervaceSeznam.getSelectionModel().getSelectedIndex();
 		if (vyber!=null && restaurace.obsahujeRezervaci(dataRezervace.get(index))) {
-		//	Rezervace rez = restaurace.getRezervace(vyber);
 			Rezervace rez = restaurace.getRezervace(dataRezervace.get(index));
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/ui/spravaRezervaci.fxml"));    	
@@ -115,7 +114,7 @@ public class ControllerUvodniMenu extends GridPane{
 			spravaRezervace.setScene(new Scene(root));
 			spravaRezervace.show();
 			spravaRezervace.setTitle("Uprava Rezervace");	
-			spravaRezervace.setOnCloseRequest(new EventHandler<WindowEvent>(){
+			spravaRezervace.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				public void handle(WindowEvent event) {
 					odemkniVyber();
 				}
@@ -129,7 +128,7 @@ public class ControllerUvodniMenu extends GridPane{
      * @param   event   kliknutí na daný prvek
      * 
      */
-	@FXML public void klikNovyStul(ActionEvent event) throws Exception{
+	@FXML public void klikNovyStul(ActionEvent event) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("/ui/novyStul.fxml"));    	
     	Parent root = loader.load();
@@ -141,7 +140,7 @@ public class ControllerUvodniMenu extends GridPane{
     	novyStul.setScene(new Scene(root));
     	novyStul.show();
     	novyStul.setTitle("Nový stůl");
-    	novyStul.setOnCloseRequest(new EventHandler<WindowEvent>(){
+    	novyStul.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent event) {
 				odemkniVyber();
 			}
@@ -154,7 +153,7 @@ public class ControllerUvodniMenu extends GridPane{
      * @param   event   kliknutí na daný prvek
      * 
      */
-	@FXML public void klikSpravovatStul(ActionEvent event) throws Exception{
+	@FXML public void klikSpravovatStul(ActionEvent event) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("/ui/spravaStolu.fxml"));    	
     	Parent root = loader.load();
@@ -166,7 +165,7 @@ public class ControllerUvodniMenu extends GridPane{
     	spravaStolu.setScene(new Scene(root));
     	spravaStolu.show();
     	spravaStolu.setTitle("Správa stolů");
-    	spravaStolu.setOnCloseRequest(new EventHandler<WindowEvent>(){
+    	spravaStolu.setOnCloseRequest(new EventHandler<WindowEvent>() {
     		public void handle(WindowEvent event) {
 				odemkniVyber();
 			}	
@@ -179,7 +178,7 @@ public class ControllerUvodniMenu extends GridPane{
      * @param   event   kliknutí na daný prvek
      * 
      */
-	@FXML public void klikNovaRezervace(ActionEvent event) throws Exception{
+	@FXML public void klikNovaRezervace(ActionEvent event) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("/ui/novaRezervace.fxml"));    	
     	Parent root = loader.load();
@@ -191,7 +190,7 @@ public class ControllerUvodniMenu extends GridPane{
     	novaRezervace.setScene(new Scene(root));
     	novaRezervace.show();
     	novaRezervace.setTitle("Nová rezervace");
-    	novaRezervace.setOnCloseRequest(new EventHandler<WindowEvent>(){
+    	novaRezervace.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent event) {
 				odemkniVyber();
 			}
@@ -204,7 +203,7 @@ public class ControllerUvodniMenu extends GridPane{
      * @param   event   kliknutí na daný prvek
      * 
      */
-	@FXML public void klikUlozit(ActionEvent event){
+	@FXML public void klikUlozit(ActionEvent event) {
 		restaurace.uloz("src/main/resources/logika/stoly.txt",1);
 		restaurace.uloz("src/main/resources/logika/rezervace.txt",2);
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -232,13 +231,12 @@ public class ControllerUvodniMenu extends GridPane{
 				String a2 = format.format(rezervace.getDatum());
 				DateTimeFormatter format2 = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 				String a1 = date.format(format2);
+				
 				if (hodina.equals(rezervace.getHodina()) && a2.equals(a1)) {
 					String[] slovo = nazev.split("-");
 					String stul = slovo[0];
 					String jmeno = restaurace.getRezervace(nazev).getJmeno();
-				//	String jmeno = slovo[3];
 					String zobraz = stul + jmeno;
-					
 					dataRezervace.add(nazev);
 					seznamRezervaci.add(zobraz);
 				}
