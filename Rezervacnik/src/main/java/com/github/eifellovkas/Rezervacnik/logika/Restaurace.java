@@ -3,6 +3,7 @@ package com.github.eifellovkas.Rezervacnik.logika;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
@@ -24,6 +25,12 @@ public class Restaurace {
 	private boolean nacetlo = true;
 	private BufferedReader vstup;
 	BufferedWriter vystup;
+	boolean pruchodVstup = false;
+	boolean pruchodVystup = false;
+	boolean vadnyFormat = false;
+	File soubor;
+	boolean nacitani1 = false;
+	boolean nacitani2 = false;
 	
 	/**
      * Konstruktor pro vytvoření restaurace.
@@ -59,18 +66,20 @@ public class Restaurace {
      * 
      * @param   cestaText   cesta k souboru
      * @param   typVstupu   rozlišení o jaký typ souboru se jedná
+     * @param   jeArchiv   	rozlišení zda jde o JAR nebo ne
      */
 	@SuppressWarnings("deprecation")
 	public void nacti(String cestaText, int typVstupu, boolean jeArchiv) {
 		try {	
+			vadnyFormat = false;
 			nacetlo = true;
 			String radek = null;
 			
+			String[] odkaz = cestaText.split("/");
+			String adresar = System.getProperty("user.dir");
+			soubor = new File(adresar, odkaz[2]);
+			
 			if (jeArchiv) {
-				String[] odkaz = cestaText.split("/");
-				String adresar = System.getProperty("user.dir");
-				File soubor = new File(adresar, odkaz[2]);
-				
 				if	(!soubor.createNewFile()) {
 					soubor.createNewFile();
 				}
@@ -78,9 +87,14 @@ public class Restaurace {
 				vstup = new BufferedReader(new FileReader(soubor));
 			}
 			else {
+				if (soubor.exists()) {
+					throw new NullPointerException();
+				}
+				
 				InputStreamReader stream = new InputStreamReader(getClass().getResourceAsStream(cestaText));
 				vstup = new BufferedReader(stream);	
 			}
+			vadnyFormat = true;
 			
 			switch(typVstupu) {
 				case 1: 
@@ -151,16 +165,28 @@ public class Restaurace {
 					break;
 			}	
 		}
-		
-		catch (Exception e) { 
-			System.out.println ("Chyba na vstupu souboru: " + cestaText);
+		catch (java.lang.NullPointerException e) { 
 			nacetlo = false;
-			if (typVstupu == 1) {
-				nacti("/logika/stoly.txt",1,true);
+			if (vadnyFormat) {
+				System.out.println ("Chyba na vstupu souboru: " + cestaText + " Špatný formát hodnot");
 			}
 			else {
-				nacti("/logika/rezervace.txt",2,true);
-			}	
+				pruchodVstup = true;
+				if (typVstupu == 1) {
+					nacti("/logika/stoly.txt",1,true);
+					nacitani1 = true;
+					
+				}
+				else {
+					nacti("/logika/rezervace.txt",2,true);
+					nacitani2 = true;
+				}	
+			}
+		}
+		
+		catch (Exception e) { 
+			System.out.println ("Chyba na vstupu souboru: " + cestaText + " Špatný formát hodnot");
+			nacetlo = false;
 		}
 	}
 	
@@ -180,14 +206,16 @@ public class Restaurace {
 	 * 
 	 * @param   cestaText   cesta k souboru
 	 * @param   typVstupu   rozlišení o jaký typ souboru se jedná
+	 * @param   jeArchiv   	rozlišení zda jde o JAR nebo ne
 	 */
 	@SuppressWarnings("deprecation")
 	public void uloz(String cestaText, int typVystupu, boolean jeArchiv) {
 		try {
+			String[] odkaz = cestaText.split("/");
+			String adresar = System.getProperty("user.dir");
+			File soubor = new File(adresar, odkaz[4]);
+			
 			if (jeArchiv) {
-				String[] odkaz = cestaText.split("/");
-				String adresar = System.getProperty("user.dir");
-				File soubor = new File(adresar, odkaz[4]);
 				
 				if	(!soubor.createNewFile()) {
 					soubor.createNewFile();
@@ -196,6 +224,11 @@ public class Restaurace {
 				vystup = new BufferedWriter(new FileWriter(soubor));	
 			}
 			else {
+				
+				if (soubor.exists()) {
+					throw new NullPointerException();
+				}
+				
 				vystup = new BufferedWriter(new FileWriter(cestaText));	
 			}
 			
@@ -237,13 +270,22 @@ public class Restaurace {
 		}
 		
 		catch (Exception e) { 
-			System.out.println ("Chyba na zapisu souboru");
-			if (typVystupu == 1) {
-				nacti("src/main/resources/logika/stoly.txt",1,true);
+			if (nacitani1 && typVystupu == 1) {
+				uloz("src/main/resources/logika/stoly.txt",1,true);
 			}
 			else {
-				nacti("src/main/resources/logika/rezervace.txt",2,true);
-			}	
+				if (nacitani2 && typVystupu == 2) {
+					uloz("src/main/resources/logika/rezervace.txt",2,true);
+				}
+				else {
+					if (typVystupu == 1) {
+						uloz("src/main/resources/logika/stoly.txt",1,true);
+					}
+					else {
+						uloz("src/main/resources/logika/rezervace.txt",2,true);
+					}	
+				}
+			}
 		}
 	}
 		

@@ -35,7 +35,8 @@ public class NacitaniTest {
     @Test
 	public void existujeSoubor1() {
 		restaurace.nacti("/logika/testVstu.txt",1,false);
-		assertFalse(restaurace.isNacetly());
+		assertTrue(restaurace.isNacetly());
+		// pozn. test projde jelikož se vytvoří zadaný soubor.
     }
     
     /**
@@ -58,7 +59,8 @@ public class NacitaniTest {
 	public void existujeSoubor3() {
     	restaurace.nacti("/logika/testVstup.txt",1,false);
     	restaurace.nacti("/logika/testVstu.txt",2,false);
-    	assertFalse(restaurace.isNacetly());
+    	assertTrue(restaurace.isNacetly());
+    	// pozn. test projde jelikož se vytvoří zadaný soubor.
     }
     
     /**
@@ -81,7 +83,8 @@ public class NacitaniTest {
     @Test
 	public void existujeSoubor5() {
 		restaurace.nacti("/logika/testVstu.txt",1,false);
-		assertFalse(restaurace.isNacetly());
+		assertTrue(restaurace.isNacetly());
+		// pozn. test projde jelikož se vytvoří zadaný soubor.
     }
     
     /**
@@ -104,7 +107,8 @@ public class NacitaniTest {
 	public void existujeSoubor7() {
     	restaurace.nacti("/logika/testVstup.txt",1,false);
     	restaurace.nacti("/logika/testVstu.txt",2,false);
-    	assertFalse(restaurace.isNacetly());
+    	assertTrue(restaurace.isNacetly());
+    	// pozn. test projde jelikož se vytvoří zadaný soubor.
     }
     
     /**
