@@ -20,7 +20,7 @@ import javafx.stage.WindowEvent;
  * @author     Martin Havlík, havlikmar
  * @version    LS 2017/2018 (upraveno 11.5.2018)
  */
-public class Start extends Application{
+public class Start extends Application {
 	private Restaurace restaurace = new Restaurace();
 	
 	/**
@@ -64,13 +64,12 @@ public class Start extends Application{
      */
 	@Override
 	public void stop() throws Exception {
-		 restaurace.uloz("src/main/resources/logika/stoly.txt",1);
-		 restaurace.uloz("src/main/resources/logika/rezervace.txt",2);
-		 Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Konec aplikace");
-			alert.setHeaderText(null);
-			alert.setContentText("Aplikace ukončena, všechny záznamy uloženy. Děkujeme že jste ji použili");
-			alert.showAndWait();
+		restaurace.uloz("src/main/resources/logika/stoly.txt",1,false);
+		restaurace.uloz("src/main/resources/logika/rezervace.txt",2,false);
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Konec aplikace");
+		alert.setHeaderText(null);
+		alert.setContentText("Aplikace ukončena, všechny záznamy uloženy. Děkujeme že jste ji použili");
+		alert.showAndWait();
 	}
-	
 }

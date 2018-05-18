@@ -65,9 +65,10 @@ public class ControllerSpravaRezervaci {
 		jmenoVypis.appendText(String.valueOf(restaurace.getRezervace(nazev).getJmeno()));
 		
 		}
+
 	@FXML public void vypisUpravovane(ActionEvent arg0) {
 			
 		
 	}
+	}
 	
-}
