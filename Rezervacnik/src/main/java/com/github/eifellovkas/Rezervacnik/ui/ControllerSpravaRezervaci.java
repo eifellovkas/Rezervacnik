@@ -1,6 +1,7 @@
 
 package com.github.eifellovkas.Rezervacnik.ui;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -166,6 +167,12 @@ public class ControllerSpravaRezervaci {
 			
 			
 			rezervace.setStul(restaurace.getStul(hodnota));
+			SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+			String datum = format.format(date);
+			
+			String nove = stul + " - " + datum + " - " + hodinaVstup.getValue();
+			this.nazev = nove;
+			restaurace.upravSeznamRezervaci(rezervace, nazev, nove);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Hodnota byla změněna");
 			alert.setHeaderText(null);
