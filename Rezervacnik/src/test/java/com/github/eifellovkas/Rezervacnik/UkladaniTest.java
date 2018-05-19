@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.github.eifellovkas.Rezervacnik.logika.Restaurace;
 import com.github.eifellovkas.Rezervacnik.logika.Rezervace;
+import com.github.eifellovkas.Rezervacnik.logika.Soubor;
 import com.github.eifellovkas.Rezervacnik.logika.Stul;
 
 /*******************************************************************************
@@ -20,6 +21,7 @@ import com.github.eifellovkas.Rezervacnik.logika.Stul;
  */
 public class UkladaniTest {
 	private Restaurace restaurace;
+	private Soubor soubor;
 	
 	/**
      * Metoda pro vytvoření podkladů pro testování
@@ -28,6 +30,7 @@ public class UkladaniTest {
     @Before
     public void setUp() {
         restaurace  = new Restaurace();
+        soubor = new Soubor(restaurace);
     }
     
     /**
@@ -36,12 +39,12 @@ public class UkladaniTest {
      */
     @Test
 	public void uloziPrazdnySoubor() {
-    	restaurace.uloz("/logika/testVystup1.txt", 1,false);
-		restaurace.nacti("/logika/testVystup1.txt",1,false);
-		assertTrue(restaurace.isNacetly());
-		restaurace.uloz("/logika/testVystup1.txt", 2,false);
-		restaurace.nacti("/logika/testVystup1.txt",2,false);
-		assertTrue(restaurace.isNacetly());
+    	soubor.uloz("/logika/testVystup1.txt", 1,false);
+    	soubor.nacti("/logika/testVystup1.txt",1,false);
+		assertTrue(soubor.isNacetly());
+		soubor.uloz("/logika/testVystup1.txt", 2,false);
+		soubor.nacti("/logika/testVystup1.txt",2,false);
+		assertTrue(soubor.isNacetly());
     }
     
     /**
@@ -54,15 +57,15 @@ public class UkladaniTest {
     	Date date = new Date(1900,6,1);
     	Stul stul = new Stul(5,true);
 		restaurace.pridejStul("a", stul);
-		restaurace.uloz("/logika/testVystup2.txt", 1,false);
-		restaurace.nacti("/logika/testVystup2.txt",1,false);
-		assertTrue(restaurace.isNacetly());		
+		soubor.uloz("/logika/testVystup2.txt", 1,false);
+		soubor.nacti("/logika/testVystup2.txt",1,false);
+		assertTrue(soubor.isNacetly());		
 		assertTrue(restaurace.obsahujeStul("a"));
 		Rezervace rezervace = new Rezervace(date,15,"a",stul);
 		restaurace.pridejRezervaci("a", rezervace);
-		restaurace.uloz("/logika/testVystup3.txt", 2,false);
-		restaurace.nacti("/logika/testVystup3.txt",2,false);
-		assertTrue(restaurace.isNacetly());
+		soubor.uloz("/logika/testVystup3.txt", 2,false);
+		soubor.nacti("/logika/testVystup3.txt",2,false);
+		assertTrue(soubor.isNacetly());
 		assertTrue(restaurace.obsahujeRezervaci("a"));
     }
 }

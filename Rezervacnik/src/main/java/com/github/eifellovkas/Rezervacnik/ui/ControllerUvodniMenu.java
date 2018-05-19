@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.github.eifellovkas.Rezervacnik.logika.Restaurace;
 import com.github.eifellovkas.Rezervacnik.logika.Rezervace;
+import com.github.eifellovkas.Rezervacnik.logika.Soubor;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,18 +43,21 @@ public class ControllerUvodniMenu extends GridPane {
 	private ArrayList<String> 			dataRezervace;
 	@FXML private ListView<String>  	rezervaceSeznam;
 	@FXML private MenuBar  				menu;
+	private Soubor 						soubor;	
 	
 	/**
      * Metoda pro iniciaci controlleru.
      * 
-     * @param restaurace restaurace pro kterou je aplikace postavena
+     * @param restaurace 	restaurace pro kterou je aplikace postavena
+     * @param soubor		třída pro úpravu souborů
      */
-	public void inicializuj(Restaurace restaurace) {
+	public void inicializuj(Restaurace restaurace, Soubor soubor) {
 		this.restaurace = restaurace;
-		restaurace.nacti("/logika/stoly.txt",1,false);
-		boolean nacetlo1 = restaurace.isNacetly();
-		restaurace.nacti("/logika/rezervace.txt",2,false);
-		boolean nacetlo2 = restaurace.isNacetly();
+		this.soubor = soubor;
+		soubor.nacti("/logika/stoly.txt",1,false);
+		boolean nacetlo1 = soubor.isNacetly();
+		soubor.nacti("/logika/rezervace.txt",2,false);
+		boolean nacetlo2 = soubor.isNacetly();
 		seznamHodin.getItems().addAll(11,12,13,14,15,16,17,18,19,20,21,22,23); 
 		List<String> list = new ArrayList<String>();
 		seznamRezervaci = FXCollections.observableList(list);
@@ -204,8 +208,8 @@ public class ControllerUvodniMenu extends GridPane {
      * 
      */
 	@FXML public void klikUlozit(ActionEvent event) {
-		restaurace.uloz("src/main/resources/logika/stoly.txt",1,false);
-		restaurace.uloz("src/main/resources/logika/rezervace.txt",2,false);
+		soubor.uloz("src/main/resources/logika/stoly.txt",1,false);
+		soubor.uloz("src/main/resources/logika/rezervace.txt",2,false);
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Uložení");
 		alert.setHeaderText(null);

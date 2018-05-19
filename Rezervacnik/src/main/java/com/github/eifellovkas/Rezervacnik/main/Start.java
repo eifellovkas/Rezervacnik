@@ -1,6 +1,7 @@
 package com.github.eifellovkas.Rezervacnik.main;
 
 import com.github.eifellovkas.Rezervacnik.logika.Restaurace;
+import com.github.eifellovkas.Rezervacnik.logika.Soubor;
 import com.github.eifellovkas.Rezervacnik.ui.ControllerUvodniMenu;
 
 import javafx.application.Application;
@@ -21,7 +22,8 @@ import javafx.stage.WindowEvent;
  * @version    LS 2017/2018 (upraveno 11.5.2018)
  */
 public class Start extends Application {
-	private Restaurace restaurace = new Restaurace();
+	private Restaurace restaurace;
+	private Soubor soubor;
 	
 	/**
      * Metoda pro spuštění aplikace.
@@ -43,9 +45,10 @@ public class Start extends Application {
     	loader.setLocation(getClass().getResource("/ui/uvodniMenu.fxml"));    	
     	Parent root = loader.load();
     	restaurace = new Restaurace();
+    	soubor = new Soubor(restaurace);
     	
     	ControllerUvodniMenu controller = loader.getController(); 	
-    	controller.inicializuj(restaurace);
+    	controller.inicializuj(restaurace,soubor);
     	
     	primaryStage.setScene(new Scene(root));
     	primaryStage.show();
@@ -64,8 +67,8 @@ public class Start extends Application {
      */
 	@Override
 	public void stop() throws Exception {
-		restaurace.uloz("src/main/resources/logika/stoly.txt",1,false);
-		restaurace.uloz("src/main/resources/logika/rezervace.txt",2,false);
+		soubor.uloz("src/main/resources/logika/stoly.txt",1,false);
+		soubor.uloz("src/main/resources/logika/rezervace.txt",2,false);
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Konec aplikace");
 		alert.setHeaderText(null);
