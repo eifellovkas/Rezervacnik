@@ -5,19 +5,21 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+
 import com.github.eifellovkas.Rezervacnik.logika.Restaurace;
 import com.github.eifellovkas.Rezervacnik.logika.Rezervace;
 import com.github.eifellovkas.Rezervacnik.logika.Stul;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 
 /**
@@ -78,9 +80,7 @@ public class ControllerSpravaRezervaci {
 		jmenoVypis.setText("");
 		
 		String[]slovo = nazev.split(" -");
-		
 		Stul stul = restaurace.getStul(slovo[0]);
-		
 		String den = String.valueOf(restaurace.getRezervace(nazev).getDatum().getDate());
 		String mesic = String.valueOf(restaurace.getRezervace(nazev).getDatum().getMonth()+1);
 		String rok = String.valueOf(restaurace.getRezervace(nazev).getDatum().getYear()+1900);
@@ -121,9 +121,7 @@ public class ControllerSpravaRezervaci {
 				stulVstup.setDisable(true);
 				upravitButton.setText("OK");
 			}
-			
 			String datumFormat = date.format(format);
-
 			for(String nazev: restaurace.getSeznamStolu().keySet())
 		{
 			Stul stul = restaurace.getStul(nazev);
@@ -131,21 +129,17 @@ public class ControllerSpravaRezervaci {
 
 				String rezervaceNazev = nazev + " - " + datumFormat + " - " + hodina;
 			
-
 				for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
 					if(!nazev2.equals(rezervaceNazev)) {
 						if(!stulVstup.getItems().contains(nazev)) {
 							
 						stulVstup.getItems().add(nazev);
 						}
-
-
 					}
 				}
-
-			}}
+			}
+		}
 		
-			
 		}
 		else {
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -155,10 +149,6 @@ public class ControllerSpravaRezervaci {
 			alert.showAndWait();
 			
 		}
-		
-			
-
-   
 	}
 	
 	/**
