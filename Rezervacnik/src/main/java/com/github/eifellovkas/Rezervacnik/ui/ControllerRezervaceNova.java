@@ -21,11 +21,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-
-/**
- * @author plev00
+/*******************************************************************************
+ * Třída ControllerRezervaceNova slouží jako controller pro vytváření nové rezervace
  *
+ * @author     Václav Pleskač, plev00
+ * @version    LS 2017/2018 (upraveno 20.5.2018)
  */
+
 public class ControllerRezervaceNova {
 	private Restaurace restaurace;
 
@@ -40,13 +42,23 @@ public class ControllerRezervaceNova {
 	@FXML private Button				zalozitButton;
 
 	
+	/**
+     * Metoda pro iniciaci controlleru.
+     * 
+     * @param restaurace 	restaurace pro kterou je aplikace postavena
+     */
 	public void inicializace(Restaurace restaurace) {
 		this.restaurace=restaurace;
 
 		pocetMistVstup.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
 		hodinaVstup.getItems().addAll(11,12,13,14,15,16,17,18,19,20,21,22,23); 
 		stulVstup.setDisable(true);
-}
+		
+}	/**
+     * Metoda vypisující stoly, které se hodí k zadaným hodnotám
+     * 
+     * @param arg0 kliknutí myší na tlacitko OK
+     */
 	@FXML public void vypisUpravovane(ActionEvent arg0) {
 		LocalDate date = datumVstup.getValue();
 		stulVstup.getItems().removeAll();
@@ -80,7 +92,10 @@ public class ControllerRezervaceNova {
 
 				String rezervaceNazev = nazev + " - " + datumFormat + " - " + hodina;
 			
-
+				if(restaurace.getSeznamRezervaci().keySet().size()==0) {
+					stulVstup.getItems().addAll(nazev);
+					
+				}
 				for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
 					if(!nazev2.equals(rezervaceNazev)) {
 						if(!stulVstup.getItems().contains(nazev)) {
@@ -109,7 +124,11 @@ public class ControllerRezervaceNova {
 
    
 	}
-	
+	/**
+     * Metoda pro zalozeni rezervace
+     * 
+     * @param arg0 kliknutí na tlacitko Založit
+     */
 	@SuppressWarnings("deprecation")
 	@FXML public void zalozRezervaci(ActionEvent arg0) {
 		

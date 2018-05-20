@@ -21,9 +21,12 @@ import javafx.scene.control.Alert.AlertType;
 
 
 /**
- * @author plev00
- *
- */
+*  Třída ControllerSpravaRezervaci slouží jako controller pro úpravu údajů v existujících rezervacích.
+*
+*@author     Václav Pleskač
+*@version    LS 2017/2018 (upraveno 20.5.2018)
+*@created    květen 2018
+*/
 public class ControllerSpravaRezervaci {
 	private Rezervace rezervace;
 	private String nazev;
@@ -35,7 +38,6 @@ public class ControllerSpravaRezervaci {
 	@FXML private TextArea 			stulVypis;
 	@FXML private TextArea 			jmenoVypis;
 	
-	
 	@FXML private DatePicker		  	datumVstup;
 	@FXML private ComboBox<Integer>  	hodinaVstup;
 	@FXML private ComboBox<Integer>  	pocetMistVstup;
@@ -46,7 +48,13 @@ public class ControllerSpravaRezervaci {
 	@FXML private Button	resetovatButton;
 
 	
-
+	/**
+     * Metoda pro iniciaci controlleru.
+     * 
+     * @param rezervace 	třída pro práci s rezervacemi
+     * @param nazev			nazev rezervace
+     * @param restaurace 	restaurace pro kterou je aplikace postavena
+     */
 	public void inicializace(Rezervace rezervace,String nazev, Restaurace restaurace) {
 		this.rezervace=rezervace;
 		this.nazev=nazev;
@@ -57,6 +65,10 @@ public class ControllerSpravaRezervaci {
 		stulVstup.setDisable(true);
 	}
 	
+	/**
+     * Metoda pro vypis udaju
+     * 
+     */
 	@SuppressWarnings("deprecation")
 	public void vypisUdaje() {
 		datumVypis.setText("");
@@ -78,9 +90,13 @@ public class ControllerSpravaRezervaci {
 		nekurackyVypis.appendText(String.valueOf(stul.isNekuracky()));
 		stulVypis.appendText(String.valueOf(slovo[0]));
 		jmenoVypis.appendText(String.valueOf(restaurace.getRezervace(nazev).getJmeno()));
-		
 		}
 
+	/**
+     * Metoda, ktera po zadani dat upravovane rezervace umozni vypsani vhodnych stolů
+     * 
+     * @param arg0 	kliknutí na tlacitko
+     */
 	@FXML public void vypisUpravovane(ActionEvent arg0) {
 		LocalDate date = datumVstup.getValue();
 		stulVstup.getItems().removeAll();
@@ -145,6 +161,11 @@ public class ControllerSpravaRezervaci {
    
 	}
 	
+	/**
+     * Metoda pro upravení rezervace
+     * 
+     * @param arg0 	kliknutí na tlačítko
+     */
 	@SuppressWarnings({ "deprecation" })
 	@FXML public void upravRezervaci(ActionEvent arg0) {
 		
