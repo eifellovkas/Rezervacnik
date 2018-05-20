@@ -175,7 +175,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="102.0" prefWidth="150.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#resetovatButton" prefHeight="31.0" prefWidth="150.0" text="OK">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#upravRezervaci" prefHeight="31.0" prefWidth="150.0" text="Uprav">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
                            </VBox.margin>

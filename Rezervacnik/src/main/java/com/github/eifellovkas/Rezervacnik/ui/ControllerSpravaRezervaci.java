@@ -4,15 +4,10 @@ package com.github.eifellovkas.Rezervacnik.ui;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
-
 import com.github.eifellovkas.Rezervacnik.logika.Restaurace;
 import com.github.eifellovkas.Rezervacnik.logika.Rezervace;
 import com.github.eifellovkas.Rezervacnik.logika.Stul;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -62,6 +57,7 @@ public class ControllerSpravaRezervaci {
 		stulVstup.setDisable(true);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void vypisUdaje() {
 		datumVypis.setText("");
 		pocetMistVypis.setText("");
@@ -93,6 +89,23 @@ public class ControllerSpravaRezervaci {
 		boolean kurackyCB = kurackyVstup.isSelected();
 		Integer hodina = hodinaVstup.getValue();
 		if(hodina != null && mista != null && !date.equals(null) ) {
+			if(upravitButton.getText().equals("OK")){
+				hodinaVstup.setDisable(true);
+				datumVstup.setDisable(true);
+				pocetMistVstup.setDisable(true);
+				kurackyVstup.setDisable(true);
+				stulVstup.setDisable(false);
+				upravitButton.setText("upravit");
+			}
+			else {
+				hodinaVstup.setDisable(false);
+				datumVstup.setDisable(false);
+				pocetMistVstup.setDisable(false);
+				kurackyVstup.setDisable(false);
+				stulVstup.setDisable(true);
+				upravitButton.setText("OK");
+			}
+			
 			String datumFormat = date.format(format);
 
 			for(String nazev: restaurace.getSeznamStolu().keySet())
@@ -100,7 +113,7 @@ public class ControllerSpravaRezervaci {
 			Stul stul = restaurace.getStul(nazev);
 			if(stul.getPocetMist() == mista && stul.isNekuracky() == kurackyCB) {
 
-				String rezervaceNazev = nazev + " - " + date + " - " + hodina;
+				String rezervaceNazev = nazev + " - " + datumFormat + " - " + hodina;
 			
 
 				for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
@@ -128,31 +141,16 @@ public class ControllerSpravaRezervaci {
 		}
 		
 			
-	if(upravitButton.getText().equals("OK")){
-		hodinaVstup.setDisable(true);
-		datumVstup.setDisable(true);
-		pocetMistVstup.setDisable(true);
-		kurackyVstup.setDisable(true);
-		stulVstup.setDisable(false);
-		upravitButton.setText("upravit");
-	}
-	else {
-		hodinaVstup.setDisable(false);
-		datumVstup.setDisable(false);
-		pocetMistVstup.setDisable(false);
-		kurackyVstup.setDisable(false);
-		stulVstup.setDisable(true);
-		upravitButton.setText("OK");
-	}
+
    
 	}
 	
-	@SuppressWarnings("unused")
-	@FXML public void resetovatButton(ActionEvent arg0) {
+	@SuppressWarnings({ "deprecation" })
+	@FXML public void upravRezervaci(ActionEvent arg0) {
 		
 		String stul = stulVstup.getValue();
 		String jmeno = jmenoVstup.getText();
-		if(stul != null && jmeno != null) {
+		if(!stul.equals(null) && !jmeno.equals("")) {
 			
 			
 			datumVstup.getValue().getDayOfYear();
