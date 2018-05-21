@@ -33,6 +33,7 @@ public class Stul {
 	public int getPocetMist() {
 		return pocetMist;
 	}
+	
 	/**
 	 * Setter pro nastavení počtu míst
 	 * 
@@ -41,6 +42,7 @@ public class Stul {
 	public void setPocetMist(int pocetMist) {
 		this.pocetMist = pocetMist;
 	}
+	
 	/**
 	 * Metoda pro zjištění zda je stůl nekuřácký
 	 * 
@@ -50,6 +52,7 @@ public class Stul {
 	public boolean isNekuracky() {
 		return nekuracky;
 	}
+	
 	/**
 	* Setter pro nastavení, jestli je stůl nekuřácký
 	* 

@@ -21,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+
 /*******************************************************************************
  * Třída ControllerRezervaceNova slouží jako controller pro vytváření nové rezervace
  *
@@ -31,7 +32,6 @@ import javafx.scene.control.Alert.AlertType;
 public class ControllerRezervaceNova {
 	private Restaurace restaurace;
 
-	
 	@FXML private DatePicker		  	datumVstup;
 	@FXML private ComboBox<Integer>  	hodinaVstup;
 	@FXML private ComboBox<Integer>  	pocetMistVstup;
@@ -52,9 +52,10 @@ public class ControllerRezervaceNova {
 
 		pocetMistVstup.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
 		hodinaVstup.getItems().addAll(11,12,13,14,15,16,17,18,19,20,21,22,23); 
-		stulVstup.setDisable(true);
-		
-}	/**
+		stulVstup.setDisable(true);		
+	}
+	
+	/**
      * Metoda vypisující stoly, které se hodí k zadaným hodnotám
      * 
      * @param arg0 kliknutí myší na tlacitko OK
@@ -67,7 +68,7 @@ public class ControllerRezervaceNova {
 		boolean kuracky = kurackyCB.isSelected();
 		Integer hodina = hodinaVstup.getValue();
 		if(hodina != null && mista != null && !date.equals(null) ) {
-			if(upravitButton.getText().equals("OK")){
+			if(upravitButton.getText().equals("OK")) {
 				hodinaVstup.setDisable(true);
 				datumVstup.setDisable(true);
 				pocetMistVstup.setDisable(true);
@@ -83,47 +84,37 @@ public class ControllerRezervaceNova {
 				stulVstup.setDisable(true);
 				upravitButton.setText("OK");
 			}
+			
 			String datumFormat = date.format(format);
 
-			for(String nazev: restaurace.getSeznamStolu().keySet())
-		{
-			Stul stul = restaurace.getStul(nazev);
-			if(stul.getPocetMist() == mista && stul.isNekuracky() == kuracky) {
-
-				String rezervaceNazev = nazev + " - " + datumFormat + " - " + hodina;
+			for(String nazev: restaurace.getSeznamStolu().keySet()) {
+				Stul stul = restaurace.getStul(nazev);
+				if(stul.getPocetMist() == mista && stul.isNekuracky() == kuracky) {
+					String rezervaceNazev = nazev + " - " + datumFormat + " - " + hodina;
 			
-				if(restaurace.getSeznamRezervaci().keySet().size()==0) {
-					stulVstup.getItems().addAll(nazev);
-					
-				}
-				for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
-					if(!nazev2.equals(rezervaceNazev)) {
-						if(!stulVstup.getItems().contains(nazev)) {
-							
+					if(restaurace.getSeznamRezervaci().keySet().size()==0) {
 						stulVstup.getItems().addAll(nazev);
+					}
+					
+					for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
+						if(!nazev2.equals(rezervaceNazev)) {
+							if(!stulVstup.getItems().contains(nazev)) {
+								stulVstup.getItems().addAll(nazev);
+							}
 						}
-
-
 					}
 				}
-
-			}}
-		
-			
+			}	
 		}
 		else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Nedostatek údajů");
 			alert.setHeaderText(null);
 			alert.setContentText("Nejsou vyplněny všechny údaje!");
-			alert.showAndWait();
-			
+			alert.showAndWait();	
 		}
-		
-			
-
-   
 	}
+	
 	/**
      * Metoda pro zalozeni rezervace
      * 
@@ -135,8 +126,6 @@ public class ControllerRezervaceNova {
 		String stul = stulVstup.getValue();
 		String jmeno = jmenoVstup.getText();
 		if(!stul.equals(null) && !jmeno.equals("")) {
-			
-			
 			datumVstup.getValue().getDayOfYear();
 			int den = datumVstup.getValue().getDayOfMonth();
 			int mesic = datumVstup.getValue().getMonthValue();
@@ -152,21 +141,17 @@ public class ControllerRezervaceNova {
 			Rezervace rezervace = new Rezervace(date, hodina, jmeno, stulInstance);
 			restaurace.pridejRezervaci(popis, rezervace);
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Hodnota byla změněna");
+			alert.setTitle("Vložení nové rezervace");
 			alert.setHeaderText(null);
-			alert.setContentText("Hodnota byla změněna!!!");
+			alert.setContentText("Rezervace byla založena!!!");
 			alert.showAndWait();
-			
 		}
-		
-	else  {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Nedostatek údajů");
-		alert.setHeaderText(null);
-		alert.setContentText("Nejsou vyplněny všechny údaje!");
-		alert.showAndWait();
-		
+		else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Nedostatek údajů");
+			alert.setHeaderText(null);
+			alert.setContentText("Nejsou vyplněny všechny údaje!");
+			alert.showAndWait();
+		}
 	}
-		
-}
 }

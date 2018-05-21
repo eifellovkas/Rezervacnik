@@ -51,5 +51,13 @@ public class PraceRezervaceTest {
 		
 		restaurace.odeberRezervaci("a", rezervace);
 		assertTrue(restaurace.getSeznamRezervaci().isEmpty());
+		
+		restaurace.pridejRezervaci("a", rezervace);
+		assertFalse(restaurace.getSeznamRezervaci().isEmpty());
+		assertTrue(restaurace.obsahujeRezervaci("a"));
+		assertFalse(restaurace.obsahujeRezervaci("b"));
+		restaurace.upravSeznamRezervaci(rezervace, "a", "b");
+		assertTrue(restaurace.obsahujeRezervaci("b"));
+		assertFalse(restaurace.obsahujeRezervaci("a"));
     }
 }

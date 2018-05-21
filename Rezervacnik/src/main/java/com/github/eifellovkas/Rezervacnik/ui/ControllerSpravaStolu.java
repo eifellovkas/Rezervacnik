@@ -30,7 +30,7 @@ import com.github.eifellovkas.Rezervacnik.logika.Stul;
  *@version    1.0
  *@created    LS 2017/2018 (upraveno 21.05.2018)
  */
-public class ControllerSpravaStolu extends GridPane{
+public class ControllerSpravaStolu extends GridPane {
 	
 	@FXML private ListView<String> 	seznamstolu;
 	@FXML private ComboBox<Integer> pocetmist;
@@ -59,7 +59,7 @@ public class ControllerSpravaStolu extends GridPane{
 	public void vypisStoly() {
 		stoly.removeAll(stoly);
 		for (String nazev: restaurace.getSeznamStolu().keySet()) {
-		stoly.add(nazev);
+			stoly.add(nazev);
 		}
 		seznamstolu.setItems(stoly);
 	}
@@ -74,7 +74,7 @@ public class ControllerSpravaStolu extends GridPane{
 		if (!vyber.equals(null)) {
 			pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
 			nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());	
-			}
+		}
 	}
 	
 	/**
@@ -96,32 +96,32 @@ public class ControllerSpravaStolu extends GridPane{
 					alert.setTitle("Potvrzení úpravy");
 					alert.setContentText("Počet měněných míst je menší než počet vyžadovaný objednávkou. Jste si opravdu jisti, že chcete upravit stůl");
 					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() == ButtonType.OK){
+					
+					if (result.get() == ButtonType.OK) {
 						stul.setNekuracky(vyberNekuracky);
 						stul.setPocetMist(vyberMista);
 					
-				pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
-				nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());
+						pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
+						nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());
 					}
+					vybrano = true;	
+					break;
+				}
+			}	
+			if (!vybrano) {
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Potvrzení úpravy");
+				alert.setHeaderText(null);
+				alert.setContentText("Jste si opravdu jisti, že chcete upravit stůl");
+				Optional<ButtonType> result = alert.showAndWait();
 				
-			vybrano = true;	
-			break;
-			}
-		}	
-		if (!vybrano)  {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("Potvrzení úpravy");
-			alert.setHeaderText(null);
-			alert.setContentText("Jste si opravdu jisti, že chcete upravit stůl");
-
-			Optional<ButtonType> result = alert.showAndWait();
-			if (result.get() == ButtonType.OK){
-				stul.setNekuracky(vyberNekuracky);
-				stul.setPocetMist(vyberMista);
-				pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
-				nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());
-			} 
-		}	
+				if (result.get() == ButtonType.OK) {
+					stul.setNekuracky(vyberNekuracky);
+					stul.setPocetMist(vyberMista);
+					pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
+					nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());
+				} 
+			}	
 		}	
 	}
 	
@@ -138,42 +138,40 @@ public class ControllerSpravaStolu extends GridPane{
 				Stul stul = restaurace.getStul(vyber);
 				for (Rezervace rezervace: restaurace.getSeznamRezervaci().values()) {
 					if (rezervace.getStul().equals(stul)) {
-					
 						vybrano = true;
 						Alert alert = new Alert(AlertType.CONFIRMATION);
 						alert.setHeaderText(null);
 						alert.setTitle("Potvrzení smazání");
 						alert.setContentText("Na stůl se vážou objednávky. Jste si opravdu jisti, že chcete smazat stůl");
-	
 						Optional<ButtonType> result = alert.showAndWait();
-						if (result.get() == ButtonType.OK){
+						
+						if (result.get() == ButtonType.OK) {
 							for (String nazevRezervace: restaurace.getSeznamRezervaci().keySet()) {
 								Rezervace rezervace1 = restaurace.getRezervace(nazevRezervace);
 								if (rezervace1.getStul().equals(stul)) {
-								restaurace.odeberRezervaci(nazevRezervace, rezervace1);
-							
+									restaurace.odeberRezervaci(nazevRezervace, rezervace1);
 								}
 							}
-						
+							
 						restaurace.odeberStul(vyber, stul);
 						vypisStoly();
 						} 
 					}
 					break;
 				}
-			
-			if (!vybrano)  {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Potvrzení smazání");
-				alert.setHeaderText(null);
-				alert.setContentText("Jste si opravdu jisti, že chcete smazat stůl");
-	
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == ButtonType.OK){
-					restaurace.odeberStul(vyber, stul);
-					vypisStoly();
-				} 
-			}	
+				
+				if (!vybrano)  {
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setTitle("Potvrzení smazání");
+					alert.setHeaderText(null);
+					alert.setContentText("Jste si opravdu jisti, že chcete smazat stůl");	
+					Optional<ButtonType> result = alert.showAndWait();
+					
+					if (result.get() == ButtonType.OK) {
+						restaurace.odeberStul(vyber, stul);
+						vypisStoly();
+					} 
+				}	
 			}
 		}
 		catch (ConcurrentModificationException e) {
@@ -187,4 +185,3 @@ public class ControllerSpravaStolu extends GridPane{
 		}
 	}
 }
-

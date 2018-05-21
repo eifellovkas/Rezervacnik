@@ -21,7 +21,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-
 /**
 *  Třída ControllerSpravaRezervaci slouží jako controller pro úpravu údajů v existujících rezervacích.
 *
@@ -34,22 +33,20 @@ public class ControllerSpravaRezervaci {
 	private String nazev;
 	private Restaurace restaurace;
 	
-	@FXML private TextArea			datumVypis;
-	@FXML private TextArea		  	pocetMistVypis;
-	@FXML private TextArea			nekurackyVypis;
-	@FXML private TextArea 			stulVypis;
-	@FXML private TextArea 			jmenoVypis;
-	
-	@FXML private DatePicker		  	datumVstup;
+	@FXML private TextArea				datumVypis;
+	@FXML private TextArea		  		pocetMistVypis;
+	@FXML private TextArea				nekurackyVypis;
+	@FXML private TextArea 				stulVypis;
+	@FXML private TextArea 				jmenoVypis;
+	@FXML private DatePicker		 	datumVstup;
 	@FXML private ComboBox<Integer>  	hodinaVstup;
 	@FXML private ComboBox<Integer>  	pocetMistVstup;
 	@FXML private ComboBox<String>  	stulVstup;
-	@FXML private CheckBox  	kurackyVstup;
-	@FXML private TextField	jmenoVstup;
-	@FXML private Button	upravitButton;
-	@FXML private Button	resetovatButton;
+	@FXML private CheckBox  			kurackyVstup;
+	@FXML private TextField				jmenoVstup;
+	@FXML private Button				upravitButton;
+	@FXML private Button				resetovatButton;
 
-	
 	/**
      * Metoda pro iniciaci controlleru.
      * 
@@ -90,7 +87,7 @@ public class ControllerSpravaRezervaci {
 		nekurackyVypis.appendText(String.valueOf(stul.isNekuracky()));
 		stulVypis.appendText(String.valueOf(slovo[0]));
 		jmenoVypis.appendText(String.valueOf(restaurace.getRezervace(nazev).getJmeno()));
-		}
+	}
 
 	/**
      * Metoda, ktera po zadani dat upravovane rezervace umozni vypsani vhodnych stolů
@@ -105,7 +102,7 @@ public class ControllerSpravaRezervaci {
 		boolean kurackyCB = kurackyVstup.isSelected();
 		Integer hodina = hodinaVstup.getValue();
 		if(hodina != null && mista != null && !date.equals(null) ) {
-			if(upravitButton.getText().equals("OK")){
+			if(upravitButton.getText().equals("OK")) {
 				hodinaVstup.setDisable(true);
 				datumVstup.setDisable(true);
 				pocetMistVstup.setDisable(true);
@@ -122,24 +119,19 @@ public class ControllerSpravaRezervaci {
 				upravitButton.setText("OK");
 			}
 			String datumFormat = date.format(format);
-			for(String nazev: restaurace.getSeznamStolu().keySet())
-		{
-			Stul stul = restaurace.getStul(nazev);
-			if(stul.getPocetMist() == mista && stul.isNekuracky() == kurackyCB) {
-
-				String rezervaceNazev = nazev + " - " + datumFormat + " - " + hodina;
-			
-				for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
-					if(!nazev2.equals(rezervaceNazev)) {
-						if(!stulVstup.getItems().contains(nazev)) {
-							
-						stulVstup.getItems().add(nazev);
+			for(String nazev: restaurace.getSeznamStolu().keySet()) {
+				Stul stul = restaurace.getStul(nazev);
+				if(stul.getPocetMist() == mista && stul.isNekuracky() == kurackyCB) {
+					String rezervaceNazev = nazev + " - " + datumFormat + " - " + hodina;
+					for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
+						if(!nazev2.equals(rezervaceNazev)) {
+							if(!stulVstup.getItems().contains(nazev)) {
+								stulVstup.getItems().add(nazev);
+							}
 						}
 					}
 				}
 			}
-		}
-		
 		}
 		else {
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -147,7 +139,6 @@ public class ControllerSpravaRezervaci {
 			alert.setHeaderText(null);
 			alert.setContentText("Nejsou vyplněny všechny údaje!");
 			alert.showAndWait();
-			
 		}
 	}
 	
@@ -158,12 +149,9 @@ public class ControllerSpravaRezervaci {
      */
 	@SuppressWarnings({ "deprecation" })
 	@FXML public void upravRezervaci(ActionEvent arg0) {
-		
 		String stul = stulVstup.getValue();
 		String jmeno = jmenoVstup.getText();
 		if(!stul.equals(null) && !jmeno.equals("")) {
-			
-			
 			datumVstup.getValue().getDayOfYear();
 			int den = datumVstup.getValue().getDayOfMonth();
 			int mesic = datumVstup.getValue().getMonthValue();
@@ -173,7 +161,6 @@ public class ControllerSpravaRezervaci {
 			rezervace.setHodina(hodinaVstup.getValue());
 			rezervace.setJmeno(jmenoVstup.getText());
 			String hodnota = stulVstup.getValue();
-			
 			
 			rezervace.setStul(restaurace.getStul(hodnota));
 			SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
@@ -188,17 +175,13 @@ public class ControllerSpravaRezervaci {
 			alert.setContentText("Hodnota byla změněna!!!");
 			alert.showAndWait();
 			vypisUdaje();
-			
+		}	
+		else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Nedostatek údajů");
+			alert.setHeaderText(null);
+			alert.setContentText("Nejsou vyplněny všechny údaje!");
+			alert.showAndWait();
 		}
-		
-	else  {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Nedostatek údajů");
-		alert.setHeaderText(null);
-		alert.setContentText("Nejsou vyplněny všechny údaje!");
-		alert.showAndWait();
-		
 	}
-		
-}
 }

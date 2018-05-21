@@ -13,14 +13,14 @@ public class Rezervace {
         private String 	jmeno;
         private Stul 	stul;
 
-        /**
-         * Konstruktor pro vytvoření rezervace
-         * 
-         * @param datum		datum rezervace
-         * @param hodina	hodina rezervace
-         * @param jmeno		jmeno na které je rezervace
-         * @param stul		cislo stolu rezervace
-         */
+   /**
+    * Konstruktor pro vytvoření rezervace
+    * 
+    * @param datum		datum rezervace
+    * @param hodina	hodina rezervace
+    * @param jmeno		jmeno na které je rezervace
+    * @param stul		cislo stolu rezervace
+    */
     public Rezervace(Date datum, int hodina, String jmeno, Stul stul) {
         this.datum = datum;
         this.hodina = hodina;

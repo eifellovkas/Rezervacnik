@@ -18,10 +18,7 @@ import com.github.eifellovkas.Rezervacnik.logika.Stul;
  *@version    1.0
  *@created    LS 2017/2018 (upraveno 15.05.2018)
  */
-
-public class ControllerStulNovy extends GridPane{
-	
-	
+public class ControllerStulNovy extends GridPane {
 	@FXML private ComboBox<Integer> pocetmist;
 	@FXML private CheckBox nekuracky;
 	private Restaurace restaurace;
@@ -34,7 +31,7 @@ public class ControllerStulNovy extends GridPane{
 	public void inicializace(Restaurace restaurace) {
 		pocetmist.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
 		this.restaurace = restaurace;
-}
+	}
 	
 	/**
 	* Metoda pro založení stolu.
@@ -48,7 +45,7 @@ public class ControllerStulNovy extends GridPane{
 			int pocetStolu = restaurace.getPocetStolu();
 			for(int index = 1; index <= (pocetStolu + 2); index ++) {
 				String nazev = "Stul " + index;
-				if (!restaurace.obsahujeStul(nazev)){
+				if (!restaurace.obsahujeStul(nazev)) {
 					
 					Stul stul = new Stul(mista,checkbox);
 					restaurace.pridejStul(nazev, stul);
@@ -67,9 +64,7 @@ public class ControllerStulNovy extends GridPane{
 			alert.setHeaderText(null);
 			alert.setContentText("Stůl nepřidán. Údaje nebyly vyplněny!");
 			alert.showAndWait();
-		}
-		
+		}	
 	}
-
 }
 
