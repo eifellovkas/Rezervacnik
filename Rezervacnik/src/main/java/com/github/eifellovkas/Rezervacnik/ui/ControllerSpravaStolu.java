@@ -73,10 +73,12 @@ public void vypisStoly() {
 				if (result.get() == ButtonType.OK){
 					stul.setNekuracky(vyberNekuracky);
 					stul.setPocetMist(vyberMista);
-					vybrano = true;
+					
 					pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
 					nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());
 				}
+				
+			vybrano = true;	
 			break;
 			}
 		}	
@@ -107,8 +109,7 @@ public void vypisStoly() {
 			Stul stul = restaurace.getStul(vyber);
 			for (Rezervace rezervace: restaurace.getSeznamRezervaci().values()) {
 				if (rezervace.getStul().equals(stul)) {
-					restaurace.odeberStul(vyber, stul);
-					vypisStoly();
+					
 					vybrano = true;
 					Alert alert = new Alert(AlertType.CONFIRMATION);
 					alert.setHeaderText(null);
@@ -121,8 +122,12 @@ public void vypisStoly() {
 							Rezervace rezervace1 = restaurace.getRezervace(nazevRezervace);
 							if (rezervace1.getStul().equals(stul)) {
 								restaurace.odeberRezervaci(nazevRezervace, rezervace1);
+							
 							}
 						}
+						
+						restaurace.odeberStul(vyber, stul);
+						vypisStoly();
 					} 
 				}
 				break;
