@@ -22,8 +22,15 @@ import com.github.eifellovkas.Rezervacnik.logika.Restaurace;
 import com.github.eifellovkas.Rezervacnik.logika.Rezervace;
 import com.github.eifellovkas.Rezervacnik.logika.Stul;
 
+/**
+ *  Třída ControllerSpravaStolu - slouží jako controller pro správu stolu.
+ *
+ *
+ *@author     Aneta Bukovjanová, buka00
+ *@version    1.0
+ *@created    LS 2017/2018 (upraveno 21.05.2018)
+ */
 public class ControllerSpravaStolu extends GridPane{
-	
 	
 	@FXML private ListView<String> 	seznamstolu;
 	@FXML private ComboBox<Integer> pocetmist;
@@ -31,52 +38,71 @@ public class ControllerSpravaStolu extends GridPane{
 	private Restaurace 				restaurace;
 	private ObservableList<String> 	stoly;
 	
+	/**
+	 * Metoda pro iniciaci controlleru.
+	 * 
+	 * @param restaurace 	restaurace pro kterou je aplikace postavena
+	 */
 	
-public void inicializace(Restaurace restaurace) {
-	this.restaurace = restaurace;
-	List<String> list = new ArrayList<String>();
-	stoly = FXCollections.observableList(list);
-	pocetmist.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
-	vypisStoly();
-}
+	public void inicializace(Restaurace restaurace) {
+		this.restaurace = restaurace;
+		List<String> list = new ArrayList<String>();
+		stoly = FXCollections.observableList(list);
+		pocetmist.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
+		vypisStoly();
+	}
 
-public void vypisStoly() {
-	stoly.removeAll(stoly);
-	for (String nazev: restaurace.getSeznamStolu().keySet()) {
+	/**
+	 * Metoda pro výpis stolů.
+	 * 
+	 */
+	public void vypisStoly() {
+		stoly.removeAll(stoly);
+		for (String nazev: restaurace.getSeznamStolu().keySet()) {
 		stoly.add(nazev);
+		}
+		seznamstolu.setItems(stoly);
 	}
-	seznamstolu.setItems(stoly);
-}
 
-@FXML public void vyber(MouseEvent arg0) {
-	String vyber = seznamstolu.getSelectionModel().getSelectedItem(); 
-	if (!vyber.equals(null)) {
-		pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
-		nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());	
+	/**
+     * Metoda nastaví parametry stolu.
+     * 
+     * @param arg0 	kliknutí na stůl v seznamu
+     */
+	@FXML public void vyber(MouseEvent arg0) {
+		String vyber = seznamstolu.getSelectionModel().getSelectedItem(); 
+		if (!vyber.equals(null)) {
+			pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
+			nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());	
+			}
 	}
-}
-
-@FXML public void upravit(ActionEvent arg0) {
-	boolean vybrano = false;
-	String vyber = seznamstolu.getSelectionModel().getSelectedItem(); 
-	if (!vyber.equals(null)) {
-		int vyberMista = pocetmist.getValue();
-		boolean vyberNekuracky = nekuracky.isSelected();
-		Stul stul = restaurace.getStul(vyber);
-		for (Rezervace rezervace: restaurace.getSeznamRezervaci().values()) {
-			if (rezervace.getStul().equals(stul) && vyberMista < stul.getPocetMist()) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setHeaderText(null);
-				alert.setTitle("Potvrzení úpravy");
-				alert.setContentText("Počet měněných míst je menší než počet vyžadovaný objednávkou. Jste si opravdu jisti, že chcete upravit stůl");
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == ButtonType.OK){
-					stul.setNekuracky(vyberNekuracky);
-					stul.setPocetMist(vyberMista);
+	
+	/**
+     * Metoda pro úpravu parametrů stolu.
+     * 
+     * @param arg0 	kliknutí na upravit změní parametry stolu
+     */
+	@FXML public void upravit(ActionEvent arg0) {
+		boolean vybrano = false;
+		String vyber = seznamstolu.getSelectionModel().getSelectedItem(); 
+		if (!vyber.equals(null)) {
+			int vyberMista = pocetmist.getValue();
+			boolean vyberNekuracky = nekuracky.isSelected();
+			Stul stul = restaurace.getStul(vyber);
+			for (Rezervace rezervace: restaurace.getSeznamRezervaci().values()) {
+				if (rezervace.getStul().equals(stul) && vyberMista < stul.getPocetMist()) {
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setHeaderText(null);
+					alert.setTitle("Potvrzení úpravy");
+					alert.setContentText("Počet měněných míst je menší než počet vyžadovaný objednávkou. Jste si opravdu jisti, že chcete upravit stůl");
+					Optional<ButtonType> result = alert.showAndWait();
+					if (result.get() == ButtonType.OK){
+						stul.setNekuracky(vyberNekuracky);
+						stul.setPocetMist(vyberMista);
 					
-					pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
-					nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());
-				}
+				pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
+				nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());
+					}
 				
 			vybrano = true;	
 			break;
@@ -95,43 +121,46 @@ public void vypisStoly() {
 				pocetmist.setValue(restaurace.getStul(vyber).getPocetMist());
 				nekuracky.setSelected(restaurace.getStul(vyber).isNekuracky());
 			} 
+		}	
+		}	
 	}
-}	
 	
-	
-}
-
-@FXML public void odstranit(ActionEvent arg0) {
-	try {
-		boolean vybrano = false;
-		String vyber = seznamstolu.getSelectionModel().getSelectedItem(); 
-		if (!vyber.equals(null)) {
-			Stul stul = restaurace.getStul(vyber);
-			for (Rezervace rezervace: restaurace.getSeznamRezervaci().values()) {
-				if (rezervace.getStul().equals(stul)) {
+	/**
+     * Metoda pro odstranění stolu.
+     * 
+     * @param arg0 	kliknutím na odstanit
+     */
+	@FXML public void odstranit(ActionEvent arg0) {
+		try {
+			boolean vybrano = false;
+			String vyber = seznamstolu.getSelectionModel().getSelectedItem(); 
+			if (!vyber.equals(null)) {
+				Stul stul = restaurace.getStul(vyber);
+				for (Rezervace rezervace: restaurace.getSeznamRezervaci().values()) {
+					if (rezervace.getStul().equals(stul)) {
 					
-					vybrano = true;
-					Alert alert = new Alert(AlertType.CONFIRMATION);
-					alert.setHeaderText(null);
-					alert.setTitle("Potvrzení smazání");
-					alert.setContentText("Na stůl se vážou objednávky. Jste si opravdu jisti, že chcete smazat stůl");
+						vybrano = true;
+						Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setHeaderText(null);
+						alert.setTitle("Potvrzení smazání");
+						alert.setContentText("Na stůl se vážou objednávky. Jste si opravdu jisti, že chcete smazat stůl");
 	
-					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() == ButtonType.OK){
-						for (String nazevRezervace: restaurace.getSeznamRezervaci().keySet()) {
-							Rezervace rezervace1 = restaurace.getRezervace(nazevRezervace);
-							if (rezervace1.getStul().equals(stul)) {
+						Optional<ButtonType> result = alert.showAndWait();
+						if (result.get() == ButtonType.OK){
+							for (String nazevRezervace: restaurace.getSeznamRezervaci().keySet()) {
+								Rezervace rezervace1 = restaurace.getRezervace(nazevRezervace);
+								if (rezervace1.getStul().equals(stul)) {
 								restaurace.odeberRezervaci(nazevRezervace, rezervace1);
 							
+								}
 							}
-						}
 						
 						restaurace.odeberStul(vyber, stul);
 						vypisStoly();
-					} 
+						} 
+					}
+					break;
 				}
-				break;
-			}
 			
 			if (!vybrano)  {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -145,17 +174,17 @@ public void vypisStoly() {
 					vypisStoly();
 				} 
 			}	
+			}
 		}
-	}
-	catch (ConcurrentModificationException e) {
+		catch (ConcurrentModificationException e) {
+			}
+		catch (Exception e) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Stůl nebyl vybrán");
+			alert.setHeaderText(null);
+			alert.setContentText("Žádný stůl nebyl vybrán");
+			alert.showAndWait();
 		}
-	catch (Exception e) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Stůl nebyl vybrán");
-		alert.setHeaderText(null);
-		alert.setContentText("Žádný stůl nebyl vybrán");
-		alert.showAndWait();
-	}
 	}
 }
 
