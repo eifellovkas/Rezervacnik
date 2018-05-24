@@ -24,7 +24,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Odstranit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Odstranit" />
+                    <MenuItem mnemonicParsing="false" onAction="#odstranit" text="Odstranit" />
                   </items>
                 </Menu>
               </menus>

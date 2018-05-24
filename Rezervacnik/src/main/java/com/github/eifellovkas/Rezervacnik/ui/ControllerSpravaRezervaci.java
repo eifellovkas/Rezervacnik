@@ -96,7 +96,7 @@ public class ControllerSpravaRezervaci {
      */
 	@FXML public void vypisUpravovane(ActionEvent arg0) {
 		LocalDate date = datumVstup.getValue();
-		stulVstup.getItems().removeAll();
+		stulVstup.getItems().clear();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		Integer mista = pocetMistVstup.getValue();
 		boolean kurackyCB = kurackyVstup.isSelected();
@@ -120,14 +120,19 @@ public class ControllerSpravaRezervaci {
 			}
 			String datumFormat = date.format(format);
 			for(String nazev: restaurace.getSeznamStolu().keySet()) {
+				boolean pruchod = false;
 				Stul stul = restaurace.getStul(nazev);
 				if(stul.getPocetMist() == mista && stul.isNekuracky() == kurackyCB) {
 					String rezervaceNazev = nazev + " - " + datumFormat + " - " + hodina;
 					for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
 						if(!nazev2.equals(rezervaceNazev)) {
-							if(!stulVstup.getItems().contains(nazev)) {
-								stulVstup.getItems().add(nazev);
+								pruchod = true;
+								break;
 							}
+					}
+					if (!pruchod) {
+						if(!stulVstup.getItems().contains(nazev)) {
+							stulVstup.getItems().addAll(nazev);
 						}
 					}
 				}
@@ -140,8 +145,9 @@ public class ControllerSpravaRezervaci {
 			alert.setContentText("Nejsou vyplněny všechny údaje!");
 			alert.showAndWait();
 		}
+		stulVstup.getSelectionModel().clearSelection();
 	}
-	
+		
 	/**
      * Metoda pro upravení rezervace
      * 
@@ -183,5 +189,13 @@ public class ControllerSpravaRezervaci {
 			alert.setContentText("Nejsou vyplněny všechny údaje!");
 			alert.showAndWait();
 		}
+	}
+	@FXML public void odstranit (ActionEvent arg0) {
+		restaurace.odeberRezervaci(nazev, rezervace);
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Odstranění rezervace");
+		alert.setHeaderText(null);
+		alert.setContentText("Rezervace byla odstraněna");
+		alert.showAndWait();
 	}
 }

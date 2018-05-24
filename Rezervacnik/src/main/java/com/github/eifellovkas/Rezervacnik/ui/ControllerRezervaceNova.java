@@ -62,6 +62,7 @@ public class ControllerRezervaceNova {
      */
 	@FXML public void vypisUpravovane(ActionEvent arg0) {
 		LocalDate date = datumVstup.getValue();
+		stulVstup.getItems().clear();
 		stulVstup.getItems().removeAll();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		Integer mista = pocetMistVstup.getValue();
@@ -88,6 +89,7 @@ public class ControllerRezervaceNova {
 			String datumFormat = date.format(format);
 
 			for(String nazev: restaurace.getSeznamStolu().keySet()) {
+				boolean pruchod = false;
 				Stul stul = restaurace.getStul(nazev);
 				if(stul.getPocetMist() == mista && stul.isNekuracky() == kuracky) {
 					String rezervaceNazev = nazev + " - " + datumFormat + " - " + hodina;
@@ -98,9 +100,15 @@ public class ControllerRezervaceNova {
 					
 					for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
 						if(!nazev2.equals(rezervaceNazev)) {
-							if(!stulVstup.getItems().contains(nazev)) {
-								stulVstup.getItems().addAll(nazev);
-							}
+							pruchod = true;
+							break;
+						}
+					}
+					
+					if (!pruchod) {
+						System.out.println(rezervaceNazev);
+						if(!stulVstup.getItems().contains(nazev)) {
+							stulVstup.getItems().addAll(nazev);
 						}
 					}
 				}
@@ -113,6 +121,7 @@ public class ControllerRezervaceNova {
 			alert.setContentText("Nejsou vyplněny všechny údaje!");
 			alert.showAndWait();	
 		}
+		stulVstup.getSelectionModel().clearSelection();
 	}
 	
 	/**
