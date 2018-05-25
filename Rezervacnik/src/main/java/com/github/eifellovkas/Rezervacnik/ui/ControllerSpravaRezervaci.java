@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
 *  Třída ControllerSpravaRezervaci slouží jako controller pro úpravu údajů v existujících rezervacích.
@@ -46,6 +47,8 @@ public class ControllerSpravaRezervaci {
 	@FXML private TextField				jmenoVstup;
 	@FXML private Button				upravitButton;
 	@FXML private Button				resetovatButton;
+	private Stage					stage;
+	private ControllerUvodniMenu		uvodniMenu;
 
 	/**
      * Metoda pro iniciaci controlleru.
@@ -54,10 +57,11 @@ public class ControllerSpravaRezervaci {
      * @param nazev			nazev rezervace
      * @param restaurace 	restaurace pro kterou je aplikace postavena
      */
-	public void inicializace(Rezervace rezervace,String nazev, Restaurace restaurace) {
+	public void inicializace(Rezervace rezervace,String nazev, Restaurace restaurace, Stage stage, ControllerUvodniMenu uvodniMenu) {
 		this.rezervace=rezervace;
 		this.nazev=nazev;
 		this.restaurace=restaurace;
+		this.uvodniMenu = uvodniMenu;
 		pocetMistVstup.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
 		hodinaVstup.getItems().addAll(11,12,13,14,15,16,17,18,19,20,21,22,23); 
 		vypisUdaje();
@@ -197,5 +201,9 @@ public class ControllerSpravaRezervaci {
 		alert.setHeaderText(null);
 		alert.setContentText("Rezervace byla odstraněna");
 		alert.showAndWait();
+		stage.close();
+		uvodniMenu.odemkniVyber();
+		uvodniMenu.vyhledat(null);
 	}
+	
 }

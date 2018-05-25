@@ -112,8 +112,8 @@ public class ControllerUvodniMenu extends GridPane {
 			Parent root = loader.load();
 			ControllerSpravaRezervaci controller = new ControllerSpravaRezervaci(/**rez, dataRezervace.get(index)**/);
 			controller = loader.getController();
-			controller.inicializace(rez, dataRezervace.get(index),restaurace);
 			Stage spravaRezervace = new Stage();
+			controller.inicializace(rez, dataRezervace.get(index), restaurace,spravaRezervace,this);
 			zamkniVyber();
 			spravaRezervace.setScene(new Scene(root));
 			spravaRezervace.show();
