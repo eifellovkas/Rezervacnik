@@ -110,10 +110,10 @@ public class ControllerUvodniMenu extends GridPane {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/ui/spravaRezervaci.fxml"));    	
 			Parent root = loader.load();
-			ControllerSpravaRezervaci controller = new ControllerSpravaRezervaci(/**rez, dataRezervace.get(index)**/);
+			ControllerSpravaRezervaci controller = new ControllerSpravaRezervaci();
 			controller = loader.getController();
 			Stage spravaRezervace = new Stage();
-			controller.inicializace(rez, dataRezervace.get(index), restaurace,spravaRezervace,this);
+			controller.inicializace(rez, dataRezervace.get(index), restaurace, spravaRezervace, this);
 			zamkniVyber();
 			spravaRezervace.setScene(new Scene(root));
 			spravaRezervace.show();
@@ -121,6 +121,7 @@ public class ControllerUvodniMenu extends GridPane {
 			spravaRezervace.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				public void handle(WindowEvent event) {
 					odemkniVyber();
+					vyhledat(null);
 				}
 	    	});
 		}		
@@ -197,6 +198,7 @@ public class ControllerUvodniMenu extends GridPane {
     	novaRezervace.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			public void handle(WindowEvent event) {
 				odemkniVyber();
+				vyhledat(null);
 			}
     	});
 	}

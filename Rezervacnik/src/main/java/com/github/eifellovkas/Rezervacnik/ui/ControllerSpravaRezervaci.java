@@ -30,9 +30,9 @@ import javafx.stage.Stage;
 *@created    květen 2018
 */
 public class ControllerSpravaRezervaci {
-	private Rezervace rezervace;
-	private String nazev;
-	private Restaurace restaurace;
+	private Rezervace 					rezervace;
+	private String 						nazev;
+	private Restaurace 					restaurace;
 	
 	@FXML private TextArea				datumVypis;
 	@FXML private TextArea		  		pocetMistVypis;
@@ -47,7 +47,7 @@ public class ControllerSpravaRezervaci {
 	@FXML private TextField				jmenoVstup;
 	@FXML private Button				upravitButton;
 	@FXML private Button				resetovatButton;
-	private Stage					stage;
+	private Stage						stage;
 	private ControllerUvodniMenu		uvodniMenu;
 
 	/**
@@ -60,6 +60,7 @@ public class ControllerSpravaRezervaci {
 	public void inicializace(Rezervace rezervace,String nazev, Restaurace restaurace, Stage stage, ControllerUvodniMenu uvodniMenu) {
 		this.rezervace=rezervace;
 		this.nazev=nazev;
+		this.stage = stage;
 		this.restaurace=restaurace;
 		this.uvodniMenu = uvodniMenu;
 		pocetMistVstup.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
@@ -129,10 +130,10 @@ public class ControllerSpravaRezervaci {
 				if(stul.getPocetMist() == mista && stul.isNekuracky() == kurackyCB) {
 					String rezervaceNazev = nazev + " - " + datumFormat + " - " + hodina;
 					for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
-						if(!nazev2.equals(rezervaceNazev)) {
-								pruchod = true;
-								break;
-							}
+						if(nazev2.equals(rezervaceNazev)) {
+							pruchod = true;
+							break;
+						}
 					}
 					if (!pruchod) {
 						if(!stulVstup.getItems().contains(nazev)) {
@@ -194,6 +195,12 @@ public class ControllerSpravaRezervaci {
 			alert.showAndWait();
 		}
 	}
+	
+	/**
+     * Metoda pro odstranění rezervace
+     * 
+     * @param arg0 	kliknutí na tlačítko
+     */
 	@FXML public void odstranit (ActionEvent arg0) {
 		restaurace.odeberRezervaci(nazev, rezervace);
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -205,5 +212,4 @@ public class ControllerSpravaRezervaci {
 		uvodniMenu.odemkniVyber();
 		uvodniMenu.vyhledat(null);
 	}
-	
 }

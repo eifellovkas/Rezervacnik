@@ -63,7 +63,6 @@ public class ControllerRezervaceNova {
 	@FXML public void vypisUpravovane(ActionEvent arg0) {
 		LocalDate date = datumVstup.getValue();
 		stulVstup.getItems().clear();
-		stulVstup.getItems().removeAll();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		Integer mista = pocetMistVstup.getValue();
 		boolean kuracky = kurackyCB.isSelected();
@@ -99,14 +98,13 @@ public class ControllerRezervaceNova {
 					}
 					
 					for(String nazev2: restaurace.getSeznamRezervaci().keySet()) {
-						if(!nazev2.equals(rezervaceNazev)) {
+						if(nazev2.equals(rezervaceNazev)) {
 							pruchod = true;
 							break;
 						}
 					}
 					
 					if (!pruchod) {
-						System.out.println(rezervaceNazev);
 						if(!stulVstup.getItems().contains(nazev)) {
 							stulVstup.getItems().addAll(nazev);
 						}
