@@ -100,4 +100,3 @@ public class Rezervace {
         this.jmeno = jmeno;
     }
 }
-

@@ -21,8 +21,8 @@ public class Stul {
     * @param nekuracky	nekuřácký stůl
     */
 	public Stul (int pocetMist, boolean nekuracky) {
-	this.pocetMist = pocetMist;
-	this.nekuracky = nekuracky;
+		this.pocetMist = pocetMist;
+		this.nekuracky = nekuracky;
 	}
 	
 	/**

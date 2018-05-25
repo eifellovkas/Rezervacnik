@@ -36,7 +36,7 @@ public class Soubor {
      */
 	public Soubor (Restaurace restaurace) {
 		this.restaurace = restaurace;
-		}
+	}
 	
 	/**
 	 * Getter pro získání atributo, zda se celý soubor načetl. 
